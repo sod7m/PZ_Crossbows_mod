@@ -496,6 +496,7 @@ def export_model(filename, bounds, style, drawn):
     elif style == "compound":
         move_mesh_world(obj, Vector((0.0, Vector(bounds["size"]).y * 0.35, 0.0)))
     elif style == "crude":
+        move_mesh_world(obj, Vector((0.0, Vector(bounds["size"]).y * 0.28, Vector(bounds["size"]).z * 0.36)))
         apply_reference_transform(obj, CRUDE_REFERENCE_ROTATION, CRUDE_REFERENCE_SCALE)
     bpy.ops.object.select_all(action="DESELECT")
     obj.select_set(True)
