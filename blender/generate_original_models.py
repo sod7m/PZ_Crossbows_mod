@@ -170,9 +170,34 @@ def convert_modifiers():
             pass
 
 
+def join_to_single_mesh():
+    mesh_objects = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
+    bpy.ops.object.select_all(action="DESELECT")
+    for obj in mesh_objects:
+        obj.select_set(True)
+    if not mesh_objects:
+        return None
+    bpy.context.view_layer.objects.active = mesh_objects[0]
+    if len(mesh_objects) > 1:
+        bpy.ops.object.join()
+    obj = bpy.context.view_layer.objects.active
+    obj.name = "PZC_Model"
+    obj.data.name = "PZC_ModelMesh"
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    bpy.ops.object.mode_set(mode="EDIT")
+    bpy.ops.mesh.select_all(action="SELECT")
+    bpy.ops.uv.smart_project(angle_limit=math.radians(66), island_margin=0.02)
+    bpy.ops.object.mode_set(mode="OBJECT")
+    return obj
+
+
 def export_model(filename):
     convert_modifiers()
-    bpy.ops.object.select_all(action="SELECT")
+    obj = join_to_single_mesh()
+    bpy.ops.object.select_all(action="DESELECT")
+    if obj:
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
     out = OUT_DIR / filename
     bpy.ops.export_scene.fbx(
         filepath=str(out),

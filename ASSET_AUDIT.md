@@ -16,7 +16,7 @@ Conservative rule for this project: if an asset was copied, derived from a copie
 | Root mod icon copy | 1 | Replace or remove duplicate | `42/Item_CrossBowDrawn.png` duplicates `media/textures/Item_CrossBowDrawn.png`. |
 | Item icons | 17 | Replace | Includes crossbows, bolts, shafts, and bolt head icons. |
 | Model textures | 3 | Replace | Crossbow, compound crossbow, and wood bolt textures. |
-| 3D models | 11 | Replace | All `.fbx` weapon/projectile models should be rebuilt or replaced with owned models. |
+| 3D models | 11 | Candidate replacement | Generated low-poly Blender models are now installed in `media/models_x`; verify in game before marking final. |
 | Shipped sounds | 9 | Replace | All current `.ogg` files should be replaced with original or licensed audio. |
 | Staged Rust audio | 1 | Do not ship | `needed files/2021CrossbowRust.ogg` is outside the mod and untracked. |
 
@@ -66,27 +66,27 @@ All item icons are currently treated as copied or unclear-origin development ass
 
 | File | Size | Used by | Status | Action |
 |---|---:|---|---|---|
-| `media/textures/weapons/firearm/CrossBow.png` | 1024x1024, 532739 bytes | Crossbow, improved, hand models | Replace | Create original shared crossbow texture or split per model. |
-| `media/textures/weapons/firearm/CompoundCrossBow.png` | 512x512, 83759 bytes | Compound crossbow models | Replace | Create original compound texture. |
-| `media/textures/weapons/firearm/WoodBolt.png` | 1024x1024, 322147 bytes | Wood bolt models | Replace | Create original bolt texture. |
+| `media/textures/weapons/firearm/CrossBow.png` | 1024x1024, 42611 bytes | Crossbow, improved, hand models | Candidate replacement | Generated opaque placeholder texture for visibility testing. |
+| `media/textures/weapons/firearm/CompoundCrossBow.png` | 512x512, 10772 bytes | Compound crossbow models | Candidate replacement | Generated opaque placeholder texture for visibility testing. |
+| `media/textures/weapons/firearm/WoodBolt.png` | 1024x1024, 42614 bytes | Wood bolt models | Candidate replacement | Generated opaque placeholder texture for visibility testing. |
 
 ## 3D Models
 
-All `.fbx` models are release-blocking unless proven original or replaced.
+The old copied `.fbx` models have been replaced in `media/models_x` with generated low-poly Blender models from `blender/generate_original_models.py`. The generated meshes are fitted into the old FBX coordinate/bounding-box space by `blender/fit_models_to_reference_space.py` so the existing model script scale and attachments can be tested without reauthoring every offset.
 
 | File | Bytes | Used by model script | Status | Action |
 |---|---:|---|---|---|
-| `media/models_x/weapons/firearm/CrossBow.fbx` | 66140 | `model CrossBow` | Replace | Rebuild crude crossbow model. |
-| `media/models_x/weapons/firearm/CrossBowDrawn.fbx` | 68732 | `model CrossBowDrawn` | Replace | Rebuild loaded crude crossbow model. |
-| `media/models_x/weapons/firearm/ImprovedCrossBow.fbx` | 85692 | `model ImprovedCrossBow` | Replace | Rebuild improved crossbow model. |
-| `media/models_x/weapons/firearm/ImprovedCrossBowDrawn.fbx` | 96188 | `model ImprovedCrossBowDrawn` | Replace | Rebuild loaded improved crossbow model. |
-| `media/models_x/weapons/firearm/CompoundCrossBow.fbx` | 699004 | `model CompoundCrossBow` | Replace | Rebuild compound crossbow model. |
-| `media/models_x/weapons/firearm/CompoundCrossBowDrawn.fbx` | 421804 | `model CompoundCrossBowDrawn` | Replace | Rebuild loaded compound crossbow model. |
-| `media/models_x/weapons/firearm/HandCrossBow.fbx` | 79100 | `model HandCrossBow` | Replace | Rebuild hand crossbow model. |
-| `media/models_x/weapons/firearm/HandCrossBowDrawn.fbx` | 92844 | `model HandCrossBowDrawn` | Replace | Rebuild loaded hand crossbow model. |
-| `media/models_x/weapons/firearm/WoodBolt.fbx` | 21580 | `model WoodBolt` | Replace | Rebuild full-length projectile/world model. |
-| `media/models_x/weapons/firearm/ShortWoodBolt.fbx` | 56236 | `model ShortWoodBolt` | Replace | Rebuild short projectile/world model. |
-| `media/models_x/weapons/firearm/WoodBoltBroken.fbx` | 22892 | `model WoodBoltBroken` | Replace | Rebuild broken bolt world model. |
+| `media/models_x/weapons/firearm/CrossBow.fbx` | 33404 | `model CrossBow` | Candidate replacement | Generated single-mesh crude crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/CrossBowDrawn.fbx` | 37276 | `model CrossBowDrawn` | Candidate replacement | Generated single-mesh loaded crude crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/ImprovedCrossBow.fbx` | 32108 | `model ImprovedCrossBow` | Candidate replacement | Generated single-mesh improved crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/ImprovedCrossBowDrawn.fbx` | 35068 | `model ImprovedCrossBowDrawn` | Candidate replacement | Generated single-mesh loaded improved crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/CompoundCrossBow.fbx` | 39548 | `model CompoundCrossBow` | Candidate replacement | Generated single-mesh compound crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/CompoundCrossBowDrawn.fbx` | 43788 | `model CompoundCrossBowDrawn` | Candidate replacement | Generated single-mesh loaded compound crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/HandCrossBow.fbx` | 29932 | `model HandCrossBow` | Candidate replacement | Generated single-mesh hand crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/HandCrossBowDrawn.fbx` | 33916 | `model HandCrossBowDrawn` | Candidate replacement | Generated single-mesh loaded hand crossbow model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/WoodBolt.fbx` | 22860 | `model WoodBolt` | Candidate replacement | Generated single-mesh full-length bolt model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/ShortWoodBolt.fbx` | 22956 | `model ShortWoodBolt` | Candidate replacement | Generated single-mesh short bolt model, fitted to old coordinate space. |
+| `media/models_x/weapons/firearm/WoodBoltBroken.fbx` | 21276 | `model WoodBoltBroken` | Candidate replacement | Generated single-mesh broken bolt model, fitted to old coordinate space. |
 
 ## Shipped Sounds
 
@@ -165,20 +165,20 @@ Hashes are useful for proving that old assets were actually removed in later com
 | `63301A38F88706919FDB5A1A3872DCBFC4E287DE743DECA700728F9C65C632F4` | `media/textures/Item_ShortBrokenWoodBolt.png` |
 | `ABD20F23685A41E8F066DD03828319B4CEAEA831371EC9FD7C856452796CA660` | `media/textures/Item_ShortWoodBoltShaft.png` |
 | `9674FD5697EE658A4584D7C110E94DEF4DCD3BCE241899EC48E8864845969BDC` | `media/textures/Item_StoneBoltHead.png` |
-| `B1E2A8B8FE651F6AA8E141CEC7D3DCC2B62DF3125C3777B2E1104CCF02EB577B` | `media/textures/weapons/firearm/CrossBow.png` |
-| `2F981EF96FB81CEE6B2419EA908D6E9E83F952BEF0E0029D3E37F27E161406E0` | `media/textures/weapons/firearm/CompoundCrossBow.png` |
-| `539FD1D1A35B42D4B0CC7F89BAA277C923932BDCD6C5B4482716A5A8A8B65C05` | `media/textures/weapons/firearm/WoodBolt.png` |
-| `43C71367937EFCB40B831BBFCF4C28CE3BC34E11EF01C9114B6E140044AFA7EB` | `media/models_x/weapons/firearm/CrossBow.fbx` |
-| `E486D62ECCA597066CE8CD429EC74FEC1C5C06DCCDFA13A45BDE4829662E2D85` | `media/models_x/weapons/firearm/CrossBowDrawn.fbx` |
-| `27C8B1F491BBD061EC7C4FA6325A15BB02DACD64889E85C11AFF5EB7789F0836` | `media/models_x/weapons/firearm/ImprovedCrossBow.fbx` |
-| `614DC096F90EA73E2B4246A728A8CBB629C82C9C056ECEC95BE754D88A6AEDC7` | `media/models_x/weapons/firearm/ImprovedCrossBowDrawn.fbx` |
-| `FE176BC74314C23E8FAB2A1B95778D23722C4F113E84F57C4BB9E96DE1E96FB6` | `media/models_x/weapons/firearm/CompoundCrossBow.fbx` |
-| `B95671BDFE4E7F01F1B284A35A40926F8A8D9509C7CA7C3BB18C0E4974612664` | `media/models_x/weapons/firearm/CompoundCrossBowDrawn.fbx` |
-| `8A29EFB7446CEA930EA4D8096E99D702CBF02C4A6A14FF526AAB262DB93584FE` | `media/models_x/weapons/firearm/HandCrossBow.fbx` |
-| `B0AF98BEE60E6D79FFF21F11103862F73247689413C1EFC0D22E4C0B9DFE6FAF` | `media/models_x/weapons/firearm/HandCrossBowDrawn.fbx` |
-| `ACFEDF44C81D01E37767A7093FB6F8C69AD3E73F7DC726CAA6C155CB7C0DF8C1` | `media/models_x/weapons/firearm/WoodBolt.fbx` |
-| `2761FFF6AD3462B44B4558251BEB3EBD5BAE572A875AB5194B50F9B8A226C221` | `media/models_x/weapons/firearm/ShortWoodBolt.fbx` |
-| `6A0390DCF83497CFC767D6FAD07F52E41EFF70D4B322F6E89E397D094B733011` | `media/models_x/weapons/firearm/WoodBoltBroken.fbx` |
+| `9A3C5E7C369F76A8CE8942FC613BC7AD544FE3EC18CDFD77A9C5751157481331` | `media/textures/weapons/firearm/CrossBow.png` |
+| `B332EAB3C4045901C4EC45101FF5451DF3017002A3FE136EB68AF5099E231F83` | `media/textures/weapons/firearm/CompoundCrossBow.png` |
+| `78655396A5FA697DD7F5ADFF9DF911276ACEF332CEB6842D7A454D238558B7F3` | `media/textures/weapons/firearm/WoodBolt.png` |
+| `05BD30103F57D570C7D1F3BA7973EC3350F793C5A08F6FBCB5C41047A0B2243D` | `media/models_x/weapons/firearm/CrossBow.fbx` |
+| `3BA4E024AD671CF91DBC8FC8D0271914439505679DB121F667B5BDEE607E7281` | `media/models_x/weapons/firearm/CrossBowDrawn.fbx` |
+| `77AB83199A5397552B35774F6CFAF15D5AAF4507E38A71F1FC23267A47600669` | `media/models_x/weapons/firearm/ImprovedCrossBow.fbx` |
+| `C7941E9613C2AF992A345F2A7D44A58690389F893970C91EF93D272CEB615ED8` | `media/models_x/weapons/firearm/ImprovedCrossBowDrawn.fbx` |
+| `F426A0036C82199675FE5EE9469F7B5F5136C1787622F7CCA99A5D7555A4C180` | `media/models_x/weapons/firearm/CompoundCrossBow.fbx` |
+| `05DB178482933A7713394DDB5311A23FB52BB2952EE0DC3094A057CF15D70F28` | `media/models_x/weapons/firearm/CompoundCrossBowDrawn.fbx` |
+| `780D9E2C893F33692094F99FBA81E35DC5FE0B1DD0D8A19D02D8BFFDEC568682` | `media/models_x/weapons/firearm/HandCrossBow.fbx` |
+| `21DAD499ADD51CB45A6614D33D3D648DD7DEF82F3EBAC8E97A6ED6C4E39E4AE6` | `media/models_x/weapons/firearm/HandCrossBowDrawn.fbx` |
+| `4BA4E69C21B322D05CE749BE5DB19721C0D6362251EC865073FA4D2C0C90C68F` | `media/models_x/weapons/firearm/WoodBolt.fbx` |
+| `3867A625F27B766887F40CB569FF895D38C2DB223E85EDFD54A60E9DCA608AA2` | `media/models_x/weapons/firearm/ShortWoodBolt.fbx` |
+| `F1EC9923A675B6179EE0B9E1B8C62012BDD05D181991B59E5308D96E717D2FFB` | `media/models_x/weapons/firearm/WoodBoltBroken.fbx` |
 | `A82F38A2DC5B9DA3A494ADC7AE504658112E299154AB81F89DA47FB9E99141A6` | `media/sound/CrossbowShoot.ogg` |
 | `106A08E5213DB173DB84ED1D29DE7B9E4CD38B52F57463FE12889B8E81FCDC44` | `media/sound/CompoundCrossBowShoot.ogg` |
 | `219F41F195204C1F5F5DC4CA8FF037ED5ACC2C57EF8289ACA5651267DEFC4947` | `media/sound/CrossbowDryShot.ogg` |

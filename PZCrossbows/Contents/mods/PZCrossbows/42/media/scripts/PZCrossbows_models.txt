@@ -154,7 +154,7 @@ module PZCrossbows
 	model HandCrossBow
 	{
 		mesh = weapons/firearm/HandCrossBow,
-		texture = weapons/firearm/CrossBow,
+		texture = weapons/firearm/HandCrossBow,
 		scale = 0.000232,
 
 		attachment world
@@ -172,7 +172,7 @@ module PZCrossbows
 	model HandCrossBowDrawn
 	{
 		mesh = weapons/firearm/HandCrossBowDrawn,
-		texture = weapons/firearm/CrossBow,
+		texture = weapons/firearm/HandCrossBow,
 		scale = 0.000232,
 
 		attachment world
