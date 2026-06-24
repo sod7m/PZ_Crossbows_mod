@@ -15,7 +15,7 @@ Conservative rule for this project: if an asset was copied, derived from a copie
 | Workshop images | 2 | Replace | `preview.png` and `poster.png` are identical hashes. |
 | Root mod icon copy | 1 | Replace or remove duplicate | `42/Item_CrossBowDrawn.png` duplicates `media/textures/Item_CrossBowDrawn.png`. |
 | Item icons | 17 | Replace | Includes crossbows, bolts, shafts, and bolt head icons. |
-| Model textures | 4 | Replace | Crossbow, compound crossbow, wood bolt, and unused 12x scope texture. |
+| Model textures | 3 | Replace | Crossbow, compound crossbow, and wood bolt textures. |
 | 3D models | 11 | Replace | All `.fbx` weapon/projectile models should be rebuilt or replaced with owned models. |
 | Shipped sounds | 9 | Replace | All current `.ogg` files should be replaced with original or licensed audio. |
 | Staged Rust audio | 1 | Do not ship | `needed files/2021CrossbowRust.ogg` is outside the mod and untracked. |
@@ -69,7 +69,6 @@ All item icons are currently treated as copied or unclear-origin development ass
 | `media/textures/weapons/firearm/CrossBow.png` | 1024x1024, 532739 bytes | Crossbow, improved, hand models | Replace | Create original shared crossbow texture or split per model. |
 | `media/textures/weapons/firearm/CompoundCrossBow.png` | 512x512, 83759 bytes | Compound crossbow models | Replace | Create original compound texture. |
 | `media/textures/weapons/firearm/WoodBolt.png` | 1024x1024, 322147 bytes | Wood bolt models | Replace | Create original bolt texture. |
-| `media/textures/weapons/parts/12x_Scope.png` | 128x128, 9143 bytes | No active model reference found | Remove or replace | Likely leftover from old custom scope assets. Vanilla scopes are now used. |
 
 ## 3D Models
 
@@ -129,7 +128,6 @@ Current code-level release concerns found while auditing:
 
 - `media/lua/server/zPZCrossbowsClient.lua` contains client-side UI/model/reload patches despite being under `server`.
 - `workshop.txt` and `mod.info` still mention metal bolts, but the current item set only includes wood and short wood bolts.
-- `media/textures/weapons/parts/12x_Scope.png` appears unused after the move to vanilla scopes.
 
 ## Replacement Plan
 
@@ -170,7 +168,6 @@ Hashes are useful for proving that old assets were actually removed in later com
 | `B1E2A8B8FE651F6AA8E141CEC7D3DCC2B62DF3125C3777B2E1104CCF02EB577B` | `media/textures/weapons/firearm/CrossBow.png` |
 | `2F981EF96FB81CEE6B2419EA908D6E9E83F952BEF0E0029D3E37F27E161406E0` | `media/textures/weapons/firearm/CompoundCrossBow.png` |
 | `539FD1D1A35B42D4B0CC7F89BAA277C923932BDCD6C5B4482716A5A8A8B65C05` | `media/textures/weapons/firearm/WoodBolt.png` |
-| `C6956A77B95A58EAF40D6224DAEAC4E5344CC099F3E5AAAF3F119C29C771BCCB` | `media/textures/weapons/parts/12x_Scope.png` |
 | `43C71367937EFCB40B831BBFCF4C28CE3BC34E11EF01C9114B6E140044AFA7EB` | `media/models_x/weapons/firearm/CrossBow.fbx` |
 | `E486D62ECCA597066CE8CD429EC74FEC1C5C06DCCDFA13A45BDE4829662E2D85` | `media/models_x/weapons/firearm/CrossBowDrawn.fbx` |
 | `27C8B1F491BBD061EC7C4FA6325A15BB02DACD64889E85C11AFF5EB7789F0836` | `media/models_x/weapons/firearm/ImprovedCrossBow.fbx` |
