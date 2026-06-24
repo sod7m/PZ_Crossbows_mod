@@ -97,7 +97,7 @@ Audio duration could not be measured in this environment because `ffprobe` is no
 | File | Bytes | Script usage | Status | Replacement note |
 |---|---:|---|---|---|
 | `media/sound/CrossbowShoot.ogg` | 10697 | `SwingSound = CrossbowShoot` | Replace | Main crude/improved/hand shot. |
-| `media/sound/CompoundCrossBowShoot.ogg` | 21454 | `SwingSound = CompoundCrossBowShoot` | Replace | Compound shot. |
+| `media/sound/CompoundCrossBowShoot.ogg` | 16792 | `SwingSound = CompoundCrossBowShoot` | Candidate replacement | Generated Firefly WAV converted to OGG/Vorbis, trimmed to 0.828s, normalized with headroom. Verify license before Workshop release. |
 | `media/sound/CrossbowDryShot.ogg` | 5532 | `ClickSound = CrossbowDryShot` | Replace | Empty trigger/dry shot. |
 | `media/sound/CrossbowHitBlood.ogg` | 16297 | `ImpactSound = CrossbowHitBlood` | Replace | Bolt impact on character/zombie. |
 | `media/sound/CrossbowReload.ogg` | 15561 | No direct script reference found | Remove or map intentionally | Current scripts use `CrossbowReloadStop` for insert/eject/rack. |
@@ -180,7 +180,7 @@ Hashes are useful for proving that old assets were actually removed in later com
 | `2761FFF6AD3462B44B4558251BEB3EBD5BAE572A875AB5194B50F9B8A226C221` | `media/models_x/weapons/firearm/ShortWoodBolt.fbx` |
 | `6A0390DCF83497CFC767D6FAD07F52E41EFF70D4B322F6E89E397D094B733011` | `media/models_x/weapons/firearm/WoodBoltBroken.fbx` |
 | `A82F38A2DC5B9DA3A494ADC7AE504658112E299154AB81F89DA47FB9E99141A6` | `media/sound/CrossbowShoot.ogg` |
-| `A6BB9F9FC6A4E979EC24D15837C2F9F1BF38F7B64C9C332F3211FE01B5B956C5` | `media/sound/CompoundCrossBowShoot.ogg` |
+| `106A08E5213DB173DB84ED1D29DE7B9E4CD38B52F57463FE12889B8E81FCDC44` | `media/sound/CompoundCrossBowShoot.ogg` |
 | `219F41F195204C1F5F5DC4CA8FF037ED5ACC2C57EF8289ACA5651267DEFC4947` | `media/sound/CrossbowDryShot.ogg` |
 | `9C4317B71E3E467280312F97F494367510C9D6C532ED9658E3D2DF8B381E3904` | `media/sound/CrossbowHitBlood.ogg` |
 | `5B35D73FA49A35BECD69D854534771CADCD8E0597DC415971C57971B036A5DE1` | `media/sound/CrossbowReload.ogg` |
