@@ -1,0 +1,19 @@
+{
+  "Sandbox_PZCrossbows": "PZ Crossbows",
+  "Sandbox_PZCrossbows_CrudeCrossbowSpawnMult": "Множник появи грубого арбалета",
+  "Sandbox_PZCrossbows_CrudeCrossbowSpawnMult_tooltip": "Множить частоту появи грубих арбалетів у здобичі.",
+  "Sandbox_PZCrossbows_ImprovedCrossbowSpawnMult": "Множник появи покращеного арбалета",
+  "Sandbox_PZCrossbows_ImprovedCrossbowSpawnMult_tooltip": "Множить частоту появи покращених арбалетів у здобичі.",
+  "Sandbox_PZCrossbows_CompoundCrossbowSpawnMult": "Множник появи блочного арбалета",
+  "Sandbox_PZCrossbows_CompoundCrossbowSpawnMult_tooltip": "Множить частоту появи блочних арбалетів у здобичі.",
+  "Sandbox_PZCrossbows_HandCrossbowSpawnMult": "Множник появи ручного арбалета",
+  "Sandbox_PZCrossbows_HandCrossbowSpawnMult_tooltip": "Множить частоту появи ручних арбалетів у здобичі.",
+  "Sandbox_PZCrossbows_BoltWBaseBreakChance": "Шанс повернути дерев'яний болт цілим",
+  "Sandbox_PZCrossbows_BoltWBaseBreakChance_tooltip": "Базовий шанс, що застряглий дерев'яний болт повернеться цілим, а не зламаним.",
+  "Sandbox_PZCrossbows_BoltWBreakChanceScaling": "Бонус повернення дерев'яного болта за рівень догляду",
+  "Sandbox_PZCrossbows_BoltWBreakChanceScaling_tooltip": "Додатковий шанс повернути болт цілим за кожен рівень навички догляду.",
+  "Sandbox_PZCrossbows_BoltSWBaseBreakChance": "Шанс повернути короткий дерев'яний болт цілим",
+  "Sandbox_PZCrossbows_BoltSWBaseBreakChance_tooltip": "Базовий шанс, що застряглий короткий дерев'яний болт повернеться цілим, а не зламаним.",
+  "Sandbox_PZCrossbows_BoltSWBreakChanceScaling": "Бонус повернення короткого дерев'яного болта за рівень догляду",
+  "Sandbox_PZCrossbows_BoltSWBreakChanceScaling_tooltip": "Додатковий шанс повернути болт цілим за кожен рівень навички догляду."
+}

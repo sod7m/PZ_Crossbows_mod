@@ -1,0 +1,88 @@
+module PZCrossbows
+{
+	imports
+	{
+		Base,
+	}
+	
+	item WoodBoltShaft
+	{
+		Weight = 0.05,
+		ItemType = base:normal,
+		DisplayCategory = Material,
+		Icon = WoodBoltShaft,
+		DisplayName = Wood Bolt Shaft,
+		WorldStaticModel = WoodBolt,
+		Tags = base:isfirefuel,
+	}
+	item BrokenBolt
+	{
+		Weight = 0.06,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = BrokenWoodBolt,
+		DisplayName = Wood Bolt (Broken),
+		metalvalue = 1,
+		WorldStaticModel = WoodBoltBroken,
+		Tags = base:isfirefuel,
+	}
+	
+	item WoodBolt
+	{
+		Weight = 0.08,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = WoodBolt,
+		DisplayName = Wood Bolt,
+		metalvalue = 1,
+		WorldStaticModel = WoodBolt,
+		Tags = base:isfirefuel,
+	}
+
+	item BrokenShortBolt
+	{
+		Weight = 0.03,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = ShortBrokenWoodBolt,
+		DisplayName = Short Wood Bolt (Broken),
+		metalvalue = 1,
+		WorldStaticModel = WoodBoltBroken,
+		Tags = base:isfirefuel,
+	}
+	
+	item ShortWoodBoltShaft
+	{
+		Weight = 0.03,
+		ItemType = base:normal,
+		DisplayCategory = Material,
+		Icon = ShortWoodBoltShaft,
+		DisplayName = Short Wood Bolt Shaft,
+		metalvalue = 1,
+		WorldStaticModel = ShortWoodBolt,
+		Tags = base:isfirefuel,
+	}
+	
+	item ShortWoodBolt
+	{
+		Weight = 0.05,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = ShortWoodBolt,
+		DisplayName = Short Wood Bolt,
+		metalvalue = 1,
+		WorldStaticModel = ShortWoodBolt,
+		Tags = base:isfirefuel,
+	}
+
+	item StoneBoltHead
+	{
+		DisplayName = Crossbow Bolt Head,
+		DisplayCategory = Material,
+		ItemType = base:normal,
+		Weight = 0.1,
+		Icon = StoneBoltHead,
+		StaticModel = ChippedStone,
+		WorldStaticModel = ChippedStone,
+	}
+}

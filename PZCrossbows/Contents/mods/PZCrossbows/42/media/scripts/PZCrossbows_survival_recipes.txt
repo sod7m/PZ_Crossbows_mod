@@ -1,0 +1,204 @@
+module Base
+{
+	craftRecipe PZC_CarveWoodBoltShafts
+	{
+		timedAction = Making,
+		Time = 70,
+		Tags = InHandCraft,
+		xpAward = Carving:3,
+		category = Carving,
+		SkillRequired = Carving:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 [Base.TreeBranch2;Base.WoodenStick2;Base.LongStick;Base.Sapling;Base.Plank;Base.Branch_Broken] flags[AllowDestroyedItem],
+		}
+		outputs
+		{
+			item 4 PZCrossbows.WoodBoltShaft,
+		}
+	}
+
+	craftRecipe PZC_CarveShortWoodBoltShafts
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		xpAward = Carving:3,
+		category = Carving,
+		SkillRequired = Carving:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 [Base.TreeBranch2;Base.WoodenStick2;Base.LongStick;Base.Sapling;Base.Plank;Base.Branch_Broken] flags[AllowDestroyedItem],
+		}
+		outputs
+		{
+			item 8 PZCrossbows.ShortWoodBoltShaft,
+		}
+	}
+
+	craftRecipe PZC_MakeStoneBoltHeads
+	{
+		timedAction = Making,
+		Time = 90,
+		Tags = InHandCraft,
+		xpAward = FlintKnapping:8,
+		category = Knapping,
+		SkillRequired = FlintKnapping:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 [Base.SharpedStone;Base.FlintNodule;Base.SharpBoneFragment] flags[AllowDestroyedItem],
+			item 1 tags[base:hammerstone;base:mallet;base:knappingtool] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
+			item 3 PZCrossbows.StoneBoltHead,
+		}
+	}
+
+	craftRecipe PZC_AssembleWoodBolts
+	{
+		timedAction = Making,
+		Time = 70,
+		Tags = InHandCraft,
+		xpAward = Carving:4,
+		category = Assembly,
+		SkillRequired = Carving:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 5 [PZCrossbows.WoodBoltShaft],
+			item 5 [PZCrossbows.StoneBoltHead],
+			item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.SheetPaper2],
+			item 1 tags[base:binding],
+		}
+		outputs
+		{
+			item 5 PZCrossbows.WoodBolt,
+		}
+	}
+
+	craftRecipe PZC_AssembleShortWoodBolts
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		xpAward = Carving:4,
+		category = Assembly,
+		SkillRequired = Carving:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 5 [PZCrossbows.ShortWoodBoltShaft],
+			item 5 [PZCrossbows.StoneBoltHead],
+			item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.SheetPaper2],
+			item 1 tags[base:binding],
+		}
+		outputs
+		{
+			item 5 PZCrossbows.ShortWoodBolt,
+		}
+	}
+
+	craftRecipe PZC_CraftCrudeCrossbow
+	{
+		timedAction = Making,
+		Time = 220,
+		Tags = AnySurfaceCraft,
+		xpAward = Carving:12,
+		category = Weaponry,
+		SkillRequired = Maintenance:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2;Base.Plank] flags[AllowDestroyedItem],
+			item 4 tags[base:binding],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.Crossbow,
+		}
+	}
+
+	craftRecipe PZC_CraftHandCrossbow
+	{
+		timedAction = Making,
+		Time = 220,
+		Tags = AnySurfaceCraft,
+		xpAward = Carving:12,
+		category = Weaponry,
+		SkillRequired = Maintenance:1;Woodwork:2,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2;Base.Plank] flags[AllowDestroyedItem],
+			item 1 [Base.Wire],
+			item 3 tags[base:binding],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.HandCrossBow,
+		}
+	}
+
+	craftRecipe PZC_CraftImprovedCrossbow
+	{
+		timedAction = Making,
+		Time = 360,
+		Tags = AnySurfaceCraft,
+		xpAward = Carving:18,
+		category = Weaponry,
+		SkillRequired = Maintenance:1;Woodwork:2,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+			item 1 [Base.Plank] flags[AllowDestroyedItem],
+			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2] flags[AllowDestroyedItem],
+			item 4 [Base.Nails],
+			item 4 tags[base:binding],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.ImprovedCrossBow,
+		}
+	}
+
+	craftRecipe PZC_CraftCompoundCrossbow
+	{
+		timedAction = Making,
+		Time = 480,
+		Tags = AnySurfaceCraft,
+		xpAward = Carving:22,
+		category = Weaponry,
+		SkillRequired = Maintenance:2;Woodwork:4,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+			item 2 [Base.Plank] flags[AllowDestroyedItem],
+			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2] flags[AllowDestroyedItem],
+			item 1 [Base.Wire],
+			item 6 [Base.Nails],
+			item 5 tags[base:binding],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.CompoundCrossBow,
+		}
+	}
+}

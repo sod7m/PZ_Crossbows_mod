@@ -1,0 +1,13 @@
+version=1
+title=PZ Crossbows [B42.19]
+description=Standalone crossbow mod for Project Zomboid Build 42.19.
+description=
+description=Features:
+description=- Four crossbow types with wood and metal bolts.
+description=- Fixed corpse bolt recovery logic for multiplayer safety.
+description=- Corpse recovery gives either intact bolts or broken bolts per ammo type, not both.
+description=- No-book crafting and additional wilderness-friendly recipes.
+description=
+description=Temporary development build: some assets are placeholders and will be redrawn before final release.
+tags=Build 42;Weapons;Crafting;Survival;Multiplayer
+visibility=private
