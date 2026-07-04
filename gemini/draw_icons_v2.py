@@ -161,65 +161,80 @@ def save(cv, name):
 
 
 # --------------------------------------------------------------- bolts
-def bolt(cv, x0, y0, x1, y1, head=True, fletch=True, broken=False):
-    # shaft
+def bolt(cv, x0, y0, x1, y1, head=True, fletch=True):
+    """A clean arrow: wood shaft, light-stone point at (x1,y1), fletching at (x0,y0)."""
+    dx = x1 - x0; dy = y1 - y0
+    L = math.hypot(dx, dy) or 1.0
+    ux, uy = dx / L, dy / L
+    perpx, perpy = -uy, ux
+    # wood shaft (2px, dark edge from outline)
     line(cv, x0, y0, x1, y1, WOOD_D, th=3)
     line(cv, x0, y0, x1, y1, WOOD, th=1)
-    line(cv, (x0 + x1) // 2, (y0 + y1) // 2, x1, y1, WOOD_L, th=1)
-    
     if head:
-        # Stone tip pointing along shaft direction
-        dx = x1 - x0
-        dy = y1 - y0
-        len_ = math.hypot(dx, dy)
-        ux = dx / len_ if len_ > 0 else 1
-        uy = dy / len_ if len_ > 0 else 0
-        perpx = -uy
-        perpy = ux
-        
-        # Draw a beautiful triangular tip
-        tx = x1 + ux * 2
-        ty = y1 + uy * 2
-        line(cv, x1 - perpx, y1 - perpy, tx, ty, STONE_L, th=1)
-        line(cv, x1 + perpx, y1 + perpy, tx, ty, STONE, th=1)
-        plot(cv, int(round(tx)), int(round(ty)), STONE_L)
-    if broken:
-        # bright splintered break
-        plot(cv, x1, y1, FEA_L)
-        plot(cv, x1 - 1, y1, WOOD_L)
-        plot(cv, x1, y1 + 1, WOOD_L)
+        # mount the same knapped stone head we generate for StoneBoltHead,
+        # base sitting on the shaft tip, point extending forward
+        stone_head(cv, x1 + ux * 6, y1 + uy * 6, ux, uy, length=6, halfw=3.0)
     if fletch:
-        # beautiful fletching
-        dx = x1 - x0
-        dy = y1 - y0
-        len_ = math.hypot(dx, dy)
-        ux = dx / len_ if len_ > 0 else 1
-        uy = dy / len_ if len_ > 0 else 0
-        perpx = -uy
-        perpy = ux
-        
-        fx = x0 + ux * 1.5
-        fy = y0 + uy * 1.5
-        line(cv, fx, fy, fx + perpx * 1.8, fy + perpy * 1.8, FEA_L, th=1)
-        line(cv, fx, fy, fx - perpx * 1.8, fy - perpy * 1.8, FEA_L, th=1)
-        line(cv, fx - ux, fy - uy, fx - ux + perpx * 1.5, fy - uy + perpy * 1.5, FEA, th=1)
-        line(cv, fx - ux, fy - uy, fx - ux - perpx * 1.5, fy - uy - perpy * 1.5, FEA, th=1)
+        bx, by = x0 + ux * 2.4, y0 + uy * 2.4
+        line(cv, x0, y0, bx + perpx * 2.4, by + perpy * 2.4, FEA_L, th=1)
+        line(cv, x0, y0, bx - perpx * 2.4, by - perpy * 2.4, FEA_L, th=1)
+        line(cv, x0 + ux * 1.3, y0 + uy * 1.3, bx + perpx * 2.0, by + perpy * 2.0, FEA, th=1)
+        line(cv, x0 + ux * 1.3, y0 + uy * 1.3, bx - perpx * 2.0, by - perpy * 2.0, FEA, th=1)
+
+
+def broken_bolt(cv, big=True):
+    """Snapped bolt shown as two separated fragments (fletched half + pointed
+    half) offset off-axis, with a small splinter in the gap -- like the reference."""
+    A = (7, 25) if big else (10, 22)
+    B = (25, 7) if big else (22, 10)
+    dx = B[0] - A[0]; dy = B[1] - A[1]
+    L = math.hypot(dx, dy) or 1.0
+    ux, uy = dx / L, dy / L
+    perpx, perpy = -uy, ux
+
+    def pt(t, off):
+        return (A[0] + dx * t + perpx * off, A[1] + dy * t + perpy * off)
+
+    # lower fragment (fletched end), shifted to one side
+    la = pt(0.02, 1.8); lb = pt(0.34, 1.8)
+    line(cv, la[0], la[1], lb[0], lb[1], WOOD_D, th=3)
+    line(cv, la[0], la[1], lb[0], lb[1], WOOD, th=1)
+    plot(cv, lb[0] + ux, lb[1] + uy, FEA_L)              # splintered break
+    line(cv, la[0], la[1], la[0] + perpx * 2.2, la[1] + perpy * 2.2, FEA_L, th=1)
+    line(cv, la[0], la[1], la[0] - perpx * 2.2, la[1] - perpy * 2.2, FEA_L, th=1)
+    line(cv, la[0] + ux, la[1] + uy, la[0] + ux + perpx * 1.8, la[1] + uy + perpy * 1.8, FEA, th=1)
+    line(cv, la[0] + ux, la[1] + uy, la[0] + ux - perpx * 1.8, la[1] + uy - perpy * 1.8, FEA, th=1)
+
+    # upper fragment (pointed end), shifted to the other side
+    ua = pt(0.60, -1.8); ub = pt(0.97, -1.8)
+    line(cv, ua[0], ua[1], ub[0], ub[1], WOOD_D, th=3)
+    line(cv, ua[0], ua[1], ub[0], ub[1], WOOD, th=1)
+    plot(cv, ua[0] - ux, ua[1] - uy, WOOD_L)             # splintered break
+    tip = (ub[0] + ux * 3, ub[1] + uy * 3)
+    b1 = (ub[0] - ux + perpx * 2, ub[1] - uy + perpy * 2)
+    b2 = (ub[0] - ux - perpx * 2, ub[1] - uy - perpy * 2)
+    _fill_tri(cv, tip, b1, b2, STONE_L)
+    _fill_tri(cv, tip, (ub[0], ub[1]), b2, STONE)
+
+    # tiny splinter chip in the gap
+    m = pt(0.47, 0.3)
+    plot(cv, m[0], m[1], WOOD); plot(cv, m[0] + ux, m[1] + uy, WOOD_D)
 
 
 def icon_WoodBolt():
-    cv = blank(); bolt(cv, 8, 24, 24, 8); finalize(cv); return cv
+    cv = blank(); bolt(cv, 9, 23, 20, 12); finalize(cv); return cv
 
 
 def icon_ShortWoodBolt():
-    cv = blank(); bolt(cv, 10, 22, 22, 10); finalize(cv); return cv
+    cv = blank(); bolt(cv, 11, 21, 18, 14); finalize(cv); return cv
 
 
 def icon_BrokenWoodBolt():
-    cv = blank(); bolt(cv, 8, 24, 17, 15, head=False, broken=True); finalize(cv); return cv
+    cv = blank(); broken_bolt(cv, big=True); finalize(cv); return cv
 
 
 def icon_ShortBrokenWoodBolt():
-    cv = blank(); bolt(cv, 10, 22, 17, 15, head=False, broken=True); finalize(cv); return cv
+    cv = blank(); broken_bolt(cv, big=False); finalize(cv); return cv
 
 
 def icon_WoodBoltShaft():
@@ -228,6 +243,21 @@ def icon_WoodBoltShaft():
 
 def icon_ShortWoodBoltShaft():
     cv = blank(); bolt(cv, 10, 22, 22, 10, head=False, fletch=True); finalize(cv); return cv
+
+
+def stone_head(cv, tx, ty, ux, uy, length=6, halfw=3.0):
+    """Knapped flint head: point at (tx,ty) aimed along (ux,uy); base sits back
+    along -u. Used both for the StoneBoltHead icon and mounted on bolts so they
+    always match."""
+    perpx, perpy = -uy, ux
+    base = (tx - ux * length, ty - uy * length)
+    b1 = (base[0] + perpx * halfw, base[1] + perpy * halfw)
+    b2 = (base[0] - perpx * halfw, base[1] - perpy * halfw)
+    _fill_tri(cv, (tx, ty), b1, b2, STONE)
+    line(cv, b1[0], b1[1], b2[0], b2[1], STONE_D, 1)          # base edge (dark)
+    line(cv, tx, ty, b2[0], b2[1], STONE_D, 1)                # one flank shaded
+    line(cv, tx, ty, base[0], base[1], STONE_L, 1)            # central ridge
+    plot(cv, int(round(tx - ux)), int(round(ty - uy)), STONE_L)
 
 
 def _fill_tri(cv, A, B, C, col):
@@ -245,14 +275,8 @@ def _fill_tri(cv, A, B, C, col):
 
 def icon_StoneBoltHead():
     cv = blank()
-    # knapped flint head
-    tip = (24, 8); b1 = (10, 15); b2 = (15, 22)
-    _fill_tri(cv, tip, b1, b2, STONE)
-    line(cv, b1[0], b1[1], b2[0], b2[1], STONE_D, 1)
-    line(cv, tip[0], tip[1], b2[0], b2[1], STONE_D, 1)
-    line(cv, tip[0], tip[1], (b1[0] + b2[0]) // 2, (b1[1] + b2[1]) // 2, STONE_L, 1)
-    plot(cv, tip[0] - 1, tip[1] + 1, STONE_L)
-    plot(cv, 12, 19, None); plot(cv, 12, 18, STONE_D)
+    # the same knapped flint head, standalone and larger, pointing up-right
+    stone_head(cv, 22, 9, 0.66, -0.75, length=12, halfw=5.5)
     finalize(cv)
     return cv
 
@@ -274,10 +298,10 @@ def crossbow(cv, pommel, front, bow_col, drawn=False, compound=False, hand=False
     # Draw stock under-stroke
     line(cv, px, py, fx, fy, OL, th=5 if not hand else 4)
     
-    # Stock wood (or metal for compound)
-    stock_col = WOOD if not compound else MET_D
-    stock_col_d = WOOD_D if not compound else MET_D
-    stock_col_l = WOOD_L if not compound else MET_L
+    # Stock is wooden on every tier (compound = half-wood: wood stock + metal cams/bow)
+    stock_col = WOOD
+    stock_col_d = WOOD_D
+    stock_col_l = WOOD_L
     
     line(cv, px, py, fx, fy, stock_col_d, th=3 if not hand else 2)
     line(cv, px, py, fx, fy, stock_col, th=1)
