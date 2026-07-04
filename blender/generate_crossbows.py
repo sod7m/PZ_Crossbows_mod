@@ -382,27 +382,34 @@ def build_compound(fr, drawn, M):
 
 def build_hand(fr, drawn, M):
     wood, wood2, metal, steel, grip, cord = M["wood"], M["wood2"], M["metal"], M["steel"], M["grip"], M["cord"]
-    # compact body (spans nearly the full length so it fills the reference box)
-    box(fr, "hbody", (0.5, 0.46, 0.50), (0.14, 0.36, 0.90), wood, bevel=0.14)
-    box(fr, "hrail", (0.5, 0.28, 0.60), (0.05, 0.07, 0.74), wood2, bevel=0.18)
-    box(fr, "hgroove", (0.5, 0.25, 0.60), (0.02, 0.05, 0.74), metal, bevel=0.2)
-    box(fr, "hriser", (0.5, 0.44, 0.92), (0.13, 0.16, 0.10), metal, bevel=0.15)
-    # magazine box (repeating hand crossbow look)
-    box(fr, "hmag", (0.5, 0.20, 0.40), (0.16, 0.18, 0.20), metal, bevel=0.12)
-    # pistol grip
-    box(fr, "hgrip", (0.5, 0.76, 0.20), (0.11, 0.34, 0.16), grip, rot=(math.radians(18), 0, 0), bevel=0.2)
-    arc_tube(fr, "hguard", (0.5, 0.66, 0.34), 0.06, 0.012, math.radians(20), math.radians(200), "zy", metal)
-    box(fr, "htrigger", (0.5, 0.60, 0.34), (0.03, 0.08, 0.03), steel, bevel=0.2)
+    # Clean compact pistol crossbow: shaped wooden body in the upper band, a
+    # proper angled grip dropping into the deep part of the box, symmetric so it
+    # reads well from every side (no odd side-mounted magazine block).
+    sil = [
+        (0.06, 0.28), (0.18, 0.23), (0.55, 0.24), (0.82, 0.26), (0.92, 0.31),
+        (0.92, 0.47), (0.60, 0.48), (0.42, 0.49), (0.28, 0.50), (0.14, 0.48), (0.06, 0.42),
+    ]
+    profile(fr, "hstock", sil, 0.075, wood)
+    # flight rail + groove along the top (kept wooden so the top isn't a grey slab)
+    box(fr, "hrail", (0.5, 0.20, 0.58), (0.055, 0.06, 0.74), wood2, bevel=0.18)
+    box(fr, "hgroove", (0.5, 0.175, 0.58), (0.02, 0.05, 0.74), metal, bevel=0.2)
+    # front riser that carries the bow
+    box(fr, "hriser", (0.5, 0.36, 0.90), (0.15, 0.22, 0.11), metal, bevel=0.14)
+    # angled pistol grip
+    box(fr, "hgrip", (0.5, 0.72, 0.26), (0.11, 0.46, 0.17), grip, rot=(math.radians(16), 0, 0), bevel=0.18)
+    # trigger guard + trigger
+    arc_tube(fr, "hguard", (0.5, 0.60, 0.36), 0.07, 0.012, math.radians(20), math.radians(200), "zy", metal)
+    box(fr, "htrigger", (0.5, 0.55, 0.36), (0.03, 0.09, 0.03), steel, bevel=0.2)
     # short recurve limbs
     z_root, z_tip = 0.90, 0.92
     curl = 0.03
-    lw = [(0.12, 0.06)] * 2 + [(0.09, 0.05), (0.06, 0.04), (0.04, 0.03), (0.03, 0.025)]
-    left = recurve_path(fr, 0.04, z_root, z_tip, 0.44, curl)
-    right = recurve_path(fr, 0.96, z_root, z_tip, 0.44, curl)
+    lw = [(0.12, 0.055)] * 2 + [(0.09, 0.045), (0.06, 0.035), (0.04, 0.028), (0.03, 0.022)]
+    left = recurve_path(fr, 0.04, z_root, z_tip, 0.38, curl)
+    right = recurve_path(fr, 0.96, z_root, z_tip, 0.38, curl)
     swept_limb(fr, "hlimbL", left, lw, wood2)
     swept_limb(fr, "hlimbR", right, lw, wood2)
-    nock_z = 0.58 if drawn else 0.90
-    nock = fr.P(0.5, 0.45, nock_z)
+    nock_z = 0.55 if drawn else 0.90
+    nock = fr.P(0.5, 0.39, nock_z)
     make_string(fr, left[-1], right[-1], nock, cord, r=0.008)
     if drawn:
         loaded_bolt(fr, M, hand=True)
@@ -422,7 +429,7 @@ def make_string(fr, tipL, tipR, nock, cord, r=0.006):
 
 def loaded_bolt(fr, M, hand=False):
     z0, z1 = (0.50, 0.90) if not hand else (0.46, 0.82)
-    y = 0.30 if not hand else 0.27
+    y = 0.30 if not hand else 0.20
     rod(fr, "boltshaft", (0.5, y, z0), (0.5, y, z1), 0.012, M["bolt"], verts=8)
     rod(fr, "bolthead", (0.5, y, z1), (0.5, y, min(z1 + 0.06, 0.97)), 0.03, M["tip"], verts=10, taper=0.02)
     box(fr, "fletch", (0.5, y, max(z0 - 0.03, 0.05)), (0.10, 0.02, 0.03), grip_or(M), bevel=0.1)
