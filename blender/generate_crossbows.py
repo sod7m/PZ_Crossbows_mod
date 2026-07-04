@@ -313,6 +313,19 @@ def build(style, drawn, fr):
     box(fr, "grip", (0.5, 0.66, 0.20), (0.06, 0.16, 0.11), grip, rot=(math.radians(12), 0, 0), bevel=0.22)
     # foot stirrup at front
     arc_tube(fr, "stirrup", (0.5, 0.52, 0.965), 0.10, 0.012, math.radians(-70), math.radians(70), "xz", metal)
+    # --- extra detailing ---
+    # leather lashing wraps binding the prod to the fore-end
+    box(fr, "wrapA", (0.5, 0.40, 0.845), (0.175, 0.205, 0.03), grip, bevel=0.3)
+    box(fr, "wrapB", (0.5, 0.40, 0.955), (0.16, 0.185, 0.028), grip, bevel=0.3)
+    # raised cheek comb on the stock top
+    box(fr, "comb", (0.5, 0.27, 0.26), (0.075, 0.05, 0.22), wood, rot=(math.radians(-5), 0, 0), bevel=0.3)
+    # lock housing / trigger mechanism block
+    box(fr, "lock", (0.5, 0.45, 0.46), (0.095, 0.12, 0.13), metal, bevel=0.16)
+    box(fr, "lockpin", (0.5, 0.36, 0.52), (0.12, 0.028, 0.03), steel, bevel=0.3)
+    if improved:
+        # simple iron sights for the improved tier
+        box(fr, "sightR", (0.5, 0.24, 0.52), (0.03, 0.05, 0.03), metal, bevel=0.2)
+        box(fr, "sightF", (0.5, 0.24, 0.88), (0.03, 0.05, 0.025), metal, bevel=0.2)
 
     # --- recurve limbs ---
     z_root, z_tip = 0.90, 0.92
@@ -328,11 +341,16 @@ def build(style, drawn, fr):
                    [(0.05, 0.015)] * len(lw), metal)
         swept_limb(fr, "limbRm", recurve_path(fr, 0.94, z_root, z_tip, 0.38, curl),
                    [(0.05, 0.015)] * len(lw), metal)
+    # limb tip nocks
+    box(fr, "nockL", (0.03, 0.42, 0.905), (0.035, 0.06, 0.05), wood2, bevel=0.25)
+    box(fr, "nockR", (0.97, 0.42, 0.905), (0.035, 0.06, 0.05), wood2, bevel=0.25)
     tipL = left[-1]
     tipR = right[-1]
     nock_z = 0.60 if drawn else 0.90
     nock = fr.P(0.5, 0.43, nock_z)
     make_string(fr, tipL, tipR, nock, cord)
+    # string centre serving
+    box(fr, "serving", (0.5, 0.43, nock_z), (0.05, 0.045, 0.06), grip, bevel=0.3)
     if drawn:
         loaded_bolt(fr, M)
         box(fr, "latch", (0.5, 0.40, 0.58), (0.05, 0.05, 0.04), steel, bevel=0.2)
@@ -373,8 +391,22 @@ def build_compound(fr, drawn, M):
     tipL = fr.P(0.11, 0.42, 0.85)
     tipR = fr.P(0.89, 0.42, 0.85)
     make_string(fr, tipL, tipR, nock, cord, r=0.006)
+    box(fr, "serving", (0.5, 0.43, nock_z), (0.045, 0.04, 0.05), grip, bevel=0.3)
     rod(fr, "cableA", (0.11, 0.40, 0.76), (0.89, 0.44, 0.84), 0.005, cord, verts=6)
     rod(fr, "cableB", (0.11, 0.44, 0.84), (0.89, 0.40, 0.76), 0.005, cord, verts=6)
+    # --- extra detailing ---
+    # cam axle bolts
+    box(fr, "axleL", (0.11, 0.42, 0.80), (0.055, 0.03, 0.03), steel, bevel=0.3)
+    box(fr, "axleR", (0.89, 0.42, 0.80), (0.055, 0.03, 0.03), steel, bevel=0.3)
+    # limb pockets where the limbs bolt to the riser
+    box(fr, "pocketL", (0.34, 0.42, 0.86), (0.10, 0.14, 0.07), metal, bevel=0.18)
+    box(fr, "pocketR", (0.66, 0.42, 0.86), (0.10, 0.14, 0.07), metal, bevel=0.18)
+    # optic on the scope rail
+    box(fr, "optic", (0.5, 0.18, 0.52), (0.05, 0.06, 0.18), grip, bevel=0.25)
+    box(fr, "opticF", (0.5, 0.18, 0.61), (0.06, 0.07, 0.03), metal, bevel=0.3)
+    box(fr, "opticR", (0.5, 0.18, 0.43), (0.06, 0.07, 0.03), metal, bevel=0.3)
+    # trigger mechanism block
+    box(fr, "lock", (0.5, 0.46, 0.44), (0.085, 0.11, 0.12), metal, bevel=0.16)
     if drawn:
         loaded_bolt(fr, M)
         box(fr, "latch", (0.5, 0.40, 0.56), (0.05, 0.05, 0.04), steel, bevel=0.2)
@@ -583,7 +615,7 @@ def main():
     OFFSET = {
         "crude": (0.0, 0.12, 0.55),       # well forward + slight lift onto hand
         "improved": (0.0, 0.12, 0.55),
-        "compound": (0.0, 0.16, 0.0),     # lift onto hand (left shift reverted; tracer fixed in models.txt)
+        "compound": (0.0, 0.16, 0.15),    # lift onto hand + nudge forward (per user)
     }
     # hand keeps its (0,0,0) offset so its good position is unchanged; it is
     # regenerated too so it gets the outward-normals fix.

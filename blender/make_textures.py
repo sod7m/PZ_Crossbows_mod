@@ -63,7 +63,10 @@ def build(name, wood, metal):
     print("wrote", OUT / name)
 
 
-build("CrossBow.png", wood=(0.52, 0.32, 0.16), metal=(0.22, 0.23, 0.25))
-build("HandCrossBow.png", wood=(0.48, 0.29, 0.14), metal=(0.20, 0.21, 0.24))
-build("CompoundCrossBow.png", wood=(0.28, 0.22, 0.15), metal=(0.16, 0.18, 0.22))
+# All tiers share ONE identical palette so wood/metal look the same everywhere.
+_WOOD = (0.50, 0.30, 0.15)
+_METAL = (0.21, 0.22, 0.25)
+build("CrossBow.png", wood=_WOOD, metal=_METAL)
+build("HandCrossBow.png", wood=_WOOD, metal=_METAL)
+build("CompoundCrossBow.png", wood=_WOOD, metal=_METAL)
 print("DONE")
