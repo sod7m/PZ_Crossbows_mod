@@ -85,6 +85,14 @@ def materials():
 PARTS = []  # (object, material)
 
 def _finish(obj, material, smooth=True, bevel=0.0):
+    # recalc normals outward while the part is still isolated & manifold -- this
+    # is reliable, whereas recalc on the merged (interpenetrating) mesh can flip
+    # faces that sit inside another part's volume (that made parts see-through).
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    bm.to_mesh(obj.data)
+    bm.free()
     obj.data.materials.clear()
     obj.data.materials.append(material)
     if bevel > 0:
@@ -491,6 +499,7 @@ def export_one(fname, style, drawn, turn, bounds_file, offset=(0.0, 0.0, 0.0)):
         v.co = inv @ v.co
     new.matrix_world = ref_matrix
     new.name = "PZC_" + fname.replace(".fbx", "")
+    # (normals were already made outward per-part in _finish)
     # UV: simple planar box per material handled at texture stage; add basic UV
     add_planar_uv(new)
     bpy.ops.object.select_all(action="DESELECT")
@@ -569,8 +578,9 @@ def main():
         "improved": (0.0, 0.12, 0.55),
         "compound": (0.0, 0.16, 0.0),     # lift onto hand (left shift reverted; tracer fixed in models.txt)
     }
-    # the hand crossbow is already perfect in-game -> leave it untouched
-    skip = {"HandCrossBow.fbx", "HandCrossBowDrawn.fbx"}
+    # hand keeps its (0,0,0) offset so its good position is unchanged; it is
+    # regenerated too so it gets the outward-normals fix.
+    skip = set()
     only = [a for a in argv[1:] if a.endswith(".fbx")]
     for fname, (style, drawn) in MODELS.items():
         if fname in skip:
