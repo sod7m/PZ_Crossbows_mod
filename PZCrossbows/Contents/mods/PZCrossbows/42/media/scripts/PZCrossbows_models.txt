@@ -15,7 +15,7 @@ module PZCrossbows
 		attachment muzzle
 		{
 			offset = 0.0000 0.3993 0.0130,
-			rotate = 0.0000 0.0000 0.0000,
+			rotate = -90.0000 0.0000 0.0000,
 		}
 	}
 	model CrossBowDrawn
@@ -33,7 +33,7 @@ module PZCrossbows
 		attachment muzzle
 		{
 			offset = 0.0000 0.3993 0.0130,
-			rotate = 0.0000 0.0000 0.0000,
+			rotate = -90.0000 0.0000 0.0000,
 		}
 	}
 	model ImprovedCrossBow
@@ -51,7 +51,7 @@ module PZCrossbows
 		attachment muzzle
 		{
 			offset = 0.0000 0.3993 0.0130,
-			rotate = 0.0000 0.0000 0.0000,
+			rotate = -90.0000 0.0000 0.0000,
 		}
 
 		attachment scope
@@ -75,7 +75,7 @@ module PZCrossbows
 		attachment muzzle
 		{
 			offset = 0.0000 0.3993 0.0130,
-			rotate = 0.0000 0.0000 0.0000,
+			rotate = -90.0000 0.0000 0.0000,
 		}
 		
 		attachment scope
@@ -99,7 +99,7 @@ module PZCrossbows
         attachment muzzle
         {
             offset = 0.0000 0.3993 0.0130,
-            rotate = 0.0000 0.0000 0.0000,
+            rotate = -90.0000 0.0000 0.0000,
         }
 
         attachment scope
@@ -124,7 +124,7 @@ module PZCrossbows
 		attachment muzzle
 		{
 			offset = 0.0000 0.3993 0.0130,
-			rotate = 0.0000 0.0000 0.0000,
+			rotate = -90.0000 0.0000 0.0000,
 		}
 		
 		attachment scope
