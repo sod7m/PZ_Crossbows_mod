@@ -1,10 +1,10 @@
-name=PZ Crossbows
-icon=Item_CrossBowDrawn.png
+name=PZ Simple Crossbows
+icon=icon.png
 id=PZCrossbows
 poster=poster.png
-description=Standalone crossbow mod for Project Zomboid Build 42.19.
-description=Adds 4 crossbows, wood and metal bolts, fixed corpse bolt recovery, and no-book wilderness crafting.
-description=Temporary development build: copied reference assets will be replaced before final release.
+description=A standalone, lore-friendly crossbow pack for Project Zomboid Build 42, with original models, textures and icons.
+description=Four craftable crossbows — crude, improved, compound and a repeating hand crossbow — plus a full wooden-bolt ammo chain: carve shafts, knap stone heads, assemble bolts (full and short).
+description=No books required, wilderness-friendly recipes, and multiplayer-safe bolt recovery from corpses.
 author=Notem
 pzversion=42.19
 versionMin=42.19.0

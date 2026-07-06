@@ -52,7 +52,7 @@ module Base
 		inputs
 		{
 			item 1 [Base.SharpedStone;Base.FlintNodule;Base.SharpBoneFragment] flags[AllowDestroyedItem],
-			item 1 tags[base:hammerstone;base:mallet;base:knappingtool] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:hammerstone;base:knappingtool] mode:keep flags[MayDegradeLight],
 		}
 		outputs
 		{
@@ -74,7 +74,7 @@ module Base
 			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
 			item 5 [PZCrossbows.WoodBoltShaft],
 			item 5 [PZCrossbows.StoneBoltHead],
-			item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.SheetPaper2],
+			item 1 [Base.RippedSheets;Base.RippedSheetsDirty],
 			item 1 tags[base:binding],
 		}
 		outputs
@@ -97,7 +97,7 @@ module Base
 			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
 			item 5 [PZCrossbows.ShortWoodBoltShaft],
 			item 5 [PZCrossbows.StoneBoltHead],
-			item 1 [Base.RippedSheets;Base.RippedSheetsDirty;Base.SheetPaper2],
+			item 1 [Base.RippedSheets;Base.RippedSheetsDirty],
 			item 1 tags[base:binding],
 		}
 		outputs
@@ -117,8 +117,8 @@ module Base
 		needTobeLearn = false,
 		inputs
 		{
-			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
-			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 1 [Base.CrudeKnife;Base.FightingKnife;Base.FlintKnife;Base.HandguardDagger;Base.Handiknife;Base.HuntingKnife;Base.HuntingKnifeForged;Base.KitchenKnife;Base.KitchenKnifeForged;Base.KnifeButterfly;Base.KnifeFillet;Base.KnifeParing;Base.KnifePocket;Base.KnifeSushi;Base.LargeKnife;Base.LargeKnife_Scrap;Base.LongCrudeKnife;Base.Machete;Base.MacheteForged;Base.MacheteKnife;Base.Machete_Crude;Base.Multitool;Base.RailroadSpikeKnife;Base.SmallKnife;Base.SteakKnife;Base.StoneKnifeLong;Base.StraightRazor;Base.SwitchKnife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2;Base.Plank] flags[AllowDestroyedItem],
 			item 4 tags[base:binding],
 		}
@@ -139,8 +139,8 @@ module Base
 		needTobeLearn = false,
 		inputs
 		{
-			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
-			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 1 [Base.CrudeKnife;Base.FightingKnife;Base.FlintKnife;Base.HandguardDagger;Base.Handiknife;Base.HuntingKnife;Base.HuntingKnifeForged;Base.KitchenKnife;Base.KitchenKnifeForged;Base.KnifeButterfly;Base.KnifeFillet;Base.KnifeParing;Base.KnifePocket;Base.KnifeSushi;Base.LargeKnife;Base.LargeKnife_Scrap;Base.LongCrudeKnife;Base.Machete;Base.MacheteForged;Base.MacheteKnife;Base.Machete_Crude;Base.Multitool;Base.RailroadSpikeKnife;Base.SmallKnife;Base.SteakKnife;Base.StoneKnifeLong;Base.StraightRazor;Base.SwitchKnife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2;Base.Plank] flags[AllowDestroyedItem],
 			item 1 [Base.Wire],
 			item 3 tags[base:binding],
@@ -162,8 +162,8 @@ module Base
 		needTobeLearn = false,
 		inputs
 		{
-			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
-			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 1 [Base.CrudeKnife;Base.FightingKnife;Base.FlintKnife;Base.HandguardDagger;Base.Handiknife;Base.HuntingKnife;Base.HuntingKnifeForged;Base.KitchenKnife;Base.KitchenKnifeForged;Base.KnifeButterfly;Base.KnifeFillet;Base.KnifeParing;Base.KnifePocket;Base.KnifeSushi;Base.LargeKnife;Base.LargeKnife_Scrap;Base.LongCrudeKnife;Base.Machete;Base.MacheteForged;Base.MacheteKnife;Base.Machete_Crude;Base.Multitool;Base.RailroadSpikeKnife;Base.SmallKnife;Base.SteakKnife;Base.StoneKnifeLong;Base.StraightRazor;Base.SwitchKnife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
 			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
 			item 1 [Base.Plank] flags[AllowDestroyedItem],
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2] flags[AllowDestroyedItem],
@@ -187,8 +187,8 @@ module Base
 		needTobeLearn = false,
 		inputs
 		{
-			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
-			item 1 tags[base:hammer;base:hammerstone] mode:keep flags[MayDegradeLight],
+			item 1 [Base.CrudeKnife;Base.FightingKnife;Base.FlintKnife;Base.HandguardDagger;Base.Handiknife;Base.HuntingKnife;Base.HuntingKnifeForged;Base.KitchenKnife;Base.KitchenKnifeForged;Base.KnifeButterfly;Base.KnifeFillet;Base.KnifeParing;Base.KnifePocket;Base.KnifeSushi;Base.LargeKnife;Base.LargeKnife_Scrap;Base.LongCrudeKnife;Base.Machete;Base.MacheteForged;Base.MacheteKnife;Base.Machete_Crude;Base.Multitool;Base.RailroadSpikeKnife;Base.SmallKnife;Base.SteakKnife;Base.StoneKnifeLong;Base.StraightRazor;Base.SwitchKnife] mode:keep flags[MayDegrade;IsNotDull],
+			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
 			item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
 			item 2 [Base.Plank] flags[AllowDestroyedItem],
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2] flags[AllowDestroyedItem],
