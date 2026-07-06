@@ -1,0 +1,124 @@
+<p align="center">
+  <img src="assets/modposterBIG.jpg" alt="PZ Simple Crossbows poster" width="900">
+</p>
+
+# PZ Simple Crossbows
+
+PZ Simple Crossbows is a standalone, lore-friendly crossbow pack for **Project Zomboid Build 42.19**. It adds practical craftable ranged weapons, handmade ammunition, custom models, icons, sounds, recipes, loot distribution, sandbox tuning, and English/Ukrainian localization.
+
+[![Steam Workshop](https://img.shields.io/badge/Steam-Workshop-1b2838?logo=steam&logoColor=white)](https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254)
+![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2042.19-b08b57)
+![Multiplayer](https://img.shields.io/badge/Multiplayer-Supported-4c8c4a)
+![Mod ID](https://img.shields.io/badge/Mod%20ID-PZCrossbows-d6a65a)
+
+## Features
+
+- Four crossbow types with their own models, icons, balance, reload behavior, and use cases.
+- Full wooden-bolt ammo chain: carve shafts, knap stone heads, assemble bolts, and reuse or recover what survives.
+- Wilderness-friendly crafting with no magazine or book requirement.
+- Standalone design: no extra framework mod required.
+- Loot distribution for weapons and ammo, with sandbox multipliers for spawn rates.
+- Multiplayer-safe bolt recovery from corpses.
+- Custom sounds for shooting, reloading, dry fire, rack actions, and impact.
+- English and Ukrainian localization included.
+
+## Crossbows
+
+| Weapon | Role | Notes |
+|---|---|---|
+| Crude Crossbow | Early survival weapon | Simple, rough, craftable from basic wood and binding. |
+| Improved Crossbow | Reliable mid-tier option | Better range and accuracy, supports scopes. |
+| Compound Crossbow | Heavy hitter | Strongest damage profile, slower reload, supports scopes. |
+| Hand Crossbow | Compact repeater | One-handed sidearm that uses short bolts and holds four shots. |
+
+## Ammunition
+
+The mod adds a small survival crafting loop around wooden bolts:
+
+- Carve **Wood Bolt Shafts** or **Short Wood Bolt Shafts** from branches, sticks, saplings, or planks.
+- Make **Stone Bolt Heads** through flint knapping.
+- Assemble **Wood Bolts** for full-size crossbows.
+- Assemble **Short Wood Bolts** for the hand crossbow.
+- Recover fired bolts from corpses, with configurable break chances.
+
+## Crafting
+
+All recipes are available without books and are built around common survival materials:
+
+- A real knife or sharp knife tag for carving and weapon assembly.
+- Hammer for crossbow construction.
+- Saw, nails, wire, planks, sticks, branches, saplings, and binding depending on the weapon tier.
+- Carving, Maintenance, Woodwork, and Flint Knapping requirements scale with the item being made.
+
+## Sandbox options
+
+| Option | Default | Range | Description |
+|---|---:|---:|---|
+| Crude Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for crude crossbows. |
+| Improved Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for improved crossbows. |
+| Compound Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for compound crossbows. |
+| Hand Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for hand crossbows. |
+| Wood Bolt Base Break Chance | 40% | 0-100 | Base chance for a recovered full-size bolt to break. |
+| Wood Bolt Break Chance Scaling | 3% | 0-100 | Additional break chance scaling for full-size bolts. |
+| Short Wood Bolt Base Break Chance | 50% | 0-100 | Base chance for a recovered short bolt to break. |
+| Short Wood Bolt Break Chance Scaling | 3% | 0-100 | Additional break chance scaling for short bolts. |
+
+## Installation
+
+### Steam Workshop
+
+Subscribe on the [Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254), restart Project Zomboid if it is already running, and enable **PZ Simple Crossbows** in the Mods menu.
+
+### Multiplayer hosting
+
+Project Zomboid keeps Workshop downloads and enabled mods in separate lists. A server host should add the mod in both places:
+
+1. **Host -> Manage Settings -> Steam Workshop**: add `PZ Simple Crossbows` (`3758880254`).
+2. **Host -> Manage Settings -> Mods**: enable `PZCrossbows`.
+
+Clients joining the configured server will be prompted to download the Workshop item automatically.
+
+### Manual installation
+
+Copy the mod folder to:
+
+```text
+%USERPROFILE%\Zomboid\mods\PZCrossbows
+```
+
+The resulting structure must contain:
+
+```text
+PZCrossbows\42\mod.info
+```
+
+## Repository layout
+
+```text
+PZCrossbows/
+|-- preview.png
+|-- workshop.txt
+`-- Contents/mods/PZCrossbows/42/
+    |-- mod.info
+    |-- poster.png
+    `-- media/
+        |-- sandbox-options.txt
+        |-- scripts/
+        |-- lua/
+        |-- models_x/
+        |-- sound/
+        `-- textures/
+```
+
+## Compatibility
+
+- Project Zomboid **Build 42.19**
+- Singleplayer
+- Multiplayer and co-op hosting
+- Mod ID: `PZCrossbows`
+- Workshop ID: `3758880254`
+- Mod version: `0.1.0`
+
+## Author
+
+Created by **Notem**.
