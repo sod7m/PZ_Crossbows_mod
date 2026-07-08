@@ -37,9 +37,23 @@ The mod adds a small survival crafting loop around wooden bolts:
 
 - Carve **Wood Bolt Shafts** or **Short Wood Bolt Shafts** from branches, sticks, saplings, or planks.
 - Make **Stone Bolt Heads** through flint knapping.
-- Assemble **Wood Bolts** for full-size crossbows.
-- Assemble **Short Wood Bolts** for the hand crossbow.
-- Recover fired bolts from corpses, with configurable break chances.
+- Assemble **Wood Bolts** for full-size crossbows, or **Short Wood Bolts** for the hand crossbow.
+- Recover fired bolts from corpses, with configurable break chances — recovered bolts can come back intact or as **Broken Bolts**, salvageable for materials.
+- Bolts also come as **Box of Wood Bolts** / **Box of Short Wood Bolts** (a bundle of 10), found as loot or packed from loose bolts — open a box for 10 loose bolts, or bundle 10 loose bolts back into a box.
+
+## Where to find it
+
+Crossbows and bolts spawn as ordinary civilian loot — never in police or military loot pools:
+
+- **Pawn shops**: weapon racks/lockers can hold any of the four crossbow tiers.
+- **Gun stores and hunting/camping stores**: rifle racks and display cases carry Compound and Improved crossbows; ammo shelves carry boxes of bolts.
+- **Army surplus stores**: rifle rack alongside the gun stores.
+- **Ordinary houses**: closets, garages, living rooms, and storage units can turn up a crossbow or a box of bolts, same as any other hunting gear.
+- **Survivor safehouses and caches**: full weapon roster, same spawn family vanilla firearms use.
+- **Bars**: a Hand Crossbow and a box of short bolts can turn up under the counter, alongside the usual sawn-off shotguns.
+- **Camping gear, crates, lockers, and wardrobes**: a rare chance at a Compound Crossbow as a bonus find.
+
+Spawn rates for each crossbow tier are tunable via the sandbox options below.
 
 ## Crafting
 
@@ -117,7 +131,7 @@ PZCrossbows/
 - Multiplayer and co-op hosting
 - Mod ID: `PZCrossbows`
 - Workshop ID: `3758880254`
-- Mod version: `0.1.0`
+- Mod version: `1.0.1`
 
 ## Author
 

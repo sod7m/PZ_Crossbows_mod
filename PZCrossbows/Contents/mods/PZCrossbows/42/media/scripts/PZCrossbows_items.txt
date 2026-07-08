@@ -39,6 +39,19 @@ module PZCrossbows
 		Tags = base:isfirefuel,
 	}
 
+	item WoodBoltBox
+	{
+		Weight = 1.0,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = WoodBoltBox,
+		DisplayName = Box of Wood Bolts,
+		metalvalue = 1,
+		WorldStaticModel = WoodBoltBox,
+		DoubleClickRecipe = PZC_OpenWoodBoltBox,
+		Tags = base:isfirefuel,
+	}
+
 	item BrokenShortBolt
 	{
 		Weight = 0.03,
@@ -72,6 +85,19 @@ module PZCrossbows
 		DisplayName = Short Wood Bolt,
 		metalvalue = 1,
 		WorldStaticModel = ShortWoodBolt,
+		Tags = base:isfirefuel,
+	}
+
+	item ShortWoodBoltBox
+	{
+		Weight = 0.7,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = ShortWoodBoltBox,
+		DisplayName = Box of Short Wood Bolts,
+		metalvalue = 1,
+		WorldStaticModel = ShortWoodBoltBox,
+		DoubleClickRecipe = PZC_OpenShortWoodBoltBox,
 		Tags = base:isfirefuel,
 	}
 

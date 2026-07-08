@@ -7,5 +7,9 @@
   "PZC_CraftCrudeCrossbow": "Зробити грубий арбалет",
   "PZC_CraftHandCrossbow": "Зробити ручний арбалет",
   "PZC_CraftImprovedCrossbow": "Зробити покращений арбалет",
-  "PZC_CraftCompoundCrossbow": "Зробити блочний арбалет"
+  "PZC_CraftCompoundCrossbow": "Зробити блочний арбалет",
+  "PZC_OpenWoodBoltBox": "Відкрити коробку дерев'яних болтів",
+  "PZC_OpenShortWoodBoltBox": "Відкрити коробку коротких дерев'яних болтів",
+  "PZC_PlaceWoodBoltsInBox": "Скласти дерев'яні болти в коробку",
+  "PZC_PlaceShortWoodBoltsInBox": "Скласти короткі дерев'яні болти в коробку"
 }

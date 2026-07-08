@@ -201,4 +201,68 @@ module Base
 			item 1 PZCrossbows.CompoundCrossBow,
 		}
 	}
+
+	craftRecipe PZC_OpenWoodBoltBox
+	{
+		timedAction = OpenAmmoBox,
+		Time = 15,
+		Tags = InHandCraft;CanBeDoneInDark,
+		category = Packing,
+		inputs
+		{
+			item 1 [PZCrossbows.WoodBoltBox] flags[Prop2;AllowFavorite;InheritFavorite],
+		}
+		outputs
+		{
+			item 10 PZCrossbows.WoodBolt,
+		}
+	}
+
+	craftRecipe PZC_OpenShortWoodBoltBox
+	{
+		timedAction = OpenAmmoBox,
+		Time = 15,
+		Tags = InHandCraft;CanBeDoneInDark,
+		category = Packing,
+		inputs
+		{
+			item 1 [PZCrossbows.ShortWoodBoltBox] flags[Prop2;AllowFavorite;InheritFavorite],
+		}
+		outputs
+		{
+			item 10 PZCrossbows.ShortWoodBolt,
+		}
+	}
+
+	craftRecipe PZC_PlaceWoodBoltsInBox
+	{
+		timedAction = PlaceAmmoInBox,
+		Time = 15,
+		Tags = InHandCraft,
+		category = Packing,
+		inputs
+		{
+			item 10 [PZCrossbows.WoodBolt] flags[AllowFavorite;InheritFavorite;IsExclusive],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.WoodBoltBox,
+		}
+	}
+
+	craftRecipe PZC_PlaceShortWoodBoltsInBox
+	{
+		timedAction = PlaceAmmoInBox,
+		Time = 15,
+		Tags = InHandCraft,
+		category = Packing,
+		inputs
+		{
+			item 10 [PZCrossbows.ShortWoodBolt] flags[AllowFavorite;InheritFavorite;IsExclusive],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.ShortWoodBoltBox,
+		}
+	}
 }
