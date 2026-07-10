@@ -11,11 +11,11 @@ import bpy
 from mathutils import Vector
 
 
-ROOT = Path(r"E:\PZCrossbows\blender")
-SOURCE = ROOT / "CrossBow_original.fbx"
-BLEND_OUT = ROOT / "CrossBow_Detailed.blend"
-FBX_OUT = ROOT / "CrossBow_Detailed.fbx"
-PREVIEW_OUT = ROOT / "CrossBow_Detailed_preview.png"
+WORKSPACE = Path(__file__).resolve().parents[1]
+SOURCE = WORKSPACE / "backup" / "original_before_detailed" / "CrossBow.fbx"
+BLEND_OUT = WORKSPACE / "work" / "models" / "CrossBow_Detailed.blend"
+FBX_OUT = WORKSPACE / "work" / "models" / "CrossBow_Detailed.fbx"
+PREVIEW_OUT = WORKSPACE / "work" / "textures" / "CrossBow_Detailed_preview.png"
 
 
 def material(name, color, metallic=0.0, roughness=0.5):

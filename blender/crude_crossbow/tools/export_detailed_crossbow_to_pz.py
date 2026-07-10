@@ -12,9 +12,10 @@ import bpy
 from mathutils import Matrix
 
 
-ROOT = Path(r"E:\PZCrossbows")
-DETAIL_SOURCE = ROOT / "blender" / "CrossBow_Detailed.fbx"
-ORIGINALS = ROOT / "blender" / "original_game_assets"
+WORKSPACE = Path(__file__).resolve().parents[1]
+ROOT = WORKSPACE.parents[1]
+DETAIL_SOURCE = WORKSPACE / "work" / "models" / "CrossBow_Detailed.fbx"
+ORIGINALS = WORKSPACE / "backup" / "original_before_detailed"
 TARGET = ROOT / "PZCrossbows" / "Contents" / "mods" / "PZCrossbows" / "42" / "media" / "models_x" / "weapons" / "firearm"
 
 # UV centres in the original CrossBow texture: lower-left is walnut, upper-left

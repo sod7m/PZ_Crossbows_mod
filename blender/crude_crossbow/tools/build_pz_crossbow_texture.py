@@ -7,7 +7,9 @@ from pathlib import Path
 import bpy
 
 
-OUT = Path(r"E:\PZCrossbows\PZCrossbows\Contents\mods\PZCrossbows\42\media\textures\weapons\firearm\CrossBow_Detailed.png")
+WORKSPACE = Path(__file__).resolve().parents[1]
+ROOT = WORKSPACE.parents[1]
+OUT = ROOT / "PZCrossbows" / "Contents" / "mods" / "PZCrossbows" / "42" / "media" / "textures" / "weapons" / "firearm" / "CrossBow_Detailed.png"
 SIZE = 512
 
 
