@@ -39,7 +39,7 @@ module PZCrossbows
 	model ImprovedCrossBow
 	{
 		mesh = weapons/firearm/ImprovedCrossBow,
-		texture = weapons/firearm/CrossBow,
+		texture = weapons/firearm/ImprovedCrossBow_Fixed,
 		scale = 1,
 
 		attachment world
@@ -63,7 +63,7 @@ module PZCrossbows
 	model ImprovedCrossBowDrawn
 	{
 		mesh = weapons/firearm/ImprovedCrossBowDrawn,
-		texture = weapons/firearm/CrossBow,
+		texture = weapons/firearm/ImprovedCrossBow_Fixed,
 		scale = 1,
 
 		attachment world
@@ -85,9 +85,9 @@ module PZCrossbows
 		}
 	}
 	model CompoundCrossBow
-    {
+	{
         mesh = weapons/firearm/CompoundCrossBow,
-        texture = weapons/firearm/CompoundCrossBow,
+        texture = weapons/firearm/CompoundCrossBow_Fixed,
         scale = 1,
 
         attachment world
@@ -112,7 +112,7 @@ module PZCrossbows
 	model CompoundCrossBowDrawn
 	{
 		mesh = weapons/firearm/CompoundCrossBowDrawn,
-		texture = weapons/firearm/CompoundCrossBow,
+		texture = weapons/firearm/CompoundCrossBow_Fixed,
 		scale = 1,
 
 		attachment world
@@ -196,7 +196,7 @@ module PZCrossbows
 	model HandCrossBow
 	{
 		mesh = weapons/firearm/HandCrossBow,
-		texture = weapons/firearm/HandCrossBow,
+		texture = weapons/firearm/HandCrossBow_Detailed,
 		scale = 0.000232,
 
 		attachment world
@@ -214,7 +214,7 @@ module PZCrossbows
 	model HandCrossBowDrawn
 	{
 		mesh = weapons/firearm/HandCrossBowDrawn,
-		texture = weapons/firearm/HandCrossBow,
+		texture = weapons/firearm/HandCrossBow_Detailed,
 		scale = 0.000232,
 
 		attachment world
