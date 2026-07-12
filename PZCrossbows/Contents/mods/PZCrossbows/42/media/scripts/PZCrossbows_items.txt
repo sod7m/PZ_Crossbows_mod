@@ -41,7 +41,7 @@ module PZCrossbows
 
 	item WoodBoltBox
 	{
-		Weight = 1.0,
+		Weight = 0.7,
 		ItemType = base:normal,
 		DisplayCategory = Ammo,
 		Icon = WoodBoltBox,
@@ -90,7 +90,7 @@ module PZCrossbows
 
 	item ShortWoodBoltBox
 	{
-		Weight = 0.7,
+		Weight = 0.4,
 		ItemType = base:normal,
 		DisplayCategory = Ammo,
 		Icon = ShortWoodBoltBox,
