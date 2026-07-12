@@ -64,6 +64,24 @@ All recipes are available without books and are built around common survival mat
 - Saw, nails, wire, planks, sticks, branches, saplings, and binding depending on the weapon tier.
 - Carving, Maintenance, Woodwork, and Flint Knapping requirements scale with the item being made.
 
+## Item weights
+
+| Item | Weight |
+|---|---:|
+| Crude Crossbow | 2.4 |
+| Improved Crossbow | 2 |
+| Compound Crossbow | 1.75 |
+| Hand Crossbow | 1.45 |
+| Wood Bolt Shaft | 0.05 |
+| Short Wood Bolt Shaft | 0.03 |
+| Crossbow Bolt Head | 0.1 |
+| Wood Bolt | 0.08 |
+| Short Wood Bolt | 0.05 |
+| Wood Bolt (Broken) | 0.06 |
+| Short Wood Bolt (Broken) | 0.03 |
+| Box of Wood Bolts | 0.7 |
+| Box of Short Wood Bolts | 0.4 |
+
 ## Sandbox options
 
 | Option | Default | Range | Description |
@@ -131,7 +149,7 @@ PZCrossbows/
 - Multiplayer and co-op hosting
 - Mod ID: `PZCrossbows`
 - Workshop ID: `3758880254`
-- Mod version: `1.0.1`
+- Mod version: `1.0.2`
 
 ## Author
 
