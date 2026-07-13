@@ -121,6 +121,7 @@ module Base
 			item 1 tags[base:hammer] mode:keep flags[MayDegradeLight],
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2;Base.Plank] flags[AllowDestroyedItem],
 			item 4 tags[base:binding],
+			item 4 [Base.Nails],
 		}
 		outputs
 		{
@@ -144,6 +145,10 @@ module Base
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2;Base.Plank] flags[AllowDestroyedItem],
 			item 1 [Base.Wire],
 			item 3 tags[base:binding],
+			item 1 [Base.ElectricWire],
+			item 4 [Base.SmallHandle],
+			item 1 [Base.ElectronicsScrap],
+			item 1 [Base.DuctTape;Base.Scotchtape;Base.Thread_Aramid],
 		}
 		outputs
 		{
@@ -169,6 +174,7 @@ module Base
 			item 2 [Base.LongStick;Base.Sapling;Base.TreeBranch2;Base.WoodenStick2] flags[AllowDestroyedItem],
 			item 4 [Base.Nails],
 			item 4 tags[base:binding],
+			item 1 [Base.DuctTape;Base.Scotchtape;Base.Thread_Aramid],
 		}
 		outputs
 		{
@@ -195,6 +201,8 @@ module Base
 			item 1 [Base.Wire],
 			item 6 [Base.Nails],
 			item 5 tags[base:binding],
+			item 2 [Base.NutsBolts],
+			item 1 tags[base:wrench] mode:keep flags[MayDegradeLight],
 		}
 		outputs
 		{
