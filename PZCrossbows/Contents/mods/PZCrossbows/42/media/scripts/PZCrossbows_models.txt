@@ -1,5 +1,12 @@
 module PZCrossbows
 {
+	model BoltQuiverWorld
+	{
+		mesh = PZCrossbows/BoltQuiver,
+		texture = Clothes/BoltQuiver,
+		scale = 0.01,
+	}
+
 	model CrossBow
 	{
 		mesh = weapons/firearm/CrossBow,
