@@ -111,4 +111,27 @@ module PZCrossbows
 		StaticModel = ChippedStone,
 		WorldStaticModel = ChippedStone,
 	}
+
+	item BoltQuiver
+	{
+		DisplayName = Bolt Quiver,
+		DisplayCategory = Bag,
+		ItemType = base:container,
+		Weight = 0.5,
+		Icon = AmmoStrap,
+		ClothingItem = AmmoStrap_Shells,
+		WorldStaticModel = AmmoStrap_Ground_Shells,
+		Tooltip = Tooltip_PZC_BoltQuiver,
+		BodyLocation = base:ammostrap,
+		CanBeEquipped = base:ammostrap,
+		CanHaveHoles = false,
+		Capacity = 1,
+		WeightReduction = 85,
+		RunSpeedModifier = 0.98,
+		CloseSound = CloseShellsBandolier,
+		OpenSound = OpenShellsBandolier,
+		PutInSound = StoreItemShellsBandolier,
+		Tags = base:bagsfillexception;base:hasmetal,
+		AcceptItemFunction = AcceptItemFunction.PZC_BoltQuiver,
+	}
 }
