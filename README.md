@@ -40,6 +40,7 @@ The mod adds a small survival crafting loop around wooden bolts:
 - Assemble **Wood Bolts** for full-size crossbows, or **Short Wood Bolts** for the hand crossbow.
 - Recover fired bolts from corpses, with configurable break chances — recovered bolts can come back intact or as **Broken Bolts**, salvageable for materials.
 - Bolts also come as **Box of Wood Bolts** / **Box of Short Wood Bolts** (a bundle of 10), found as loot or packed from loose bolts — open a box for 10 loose bolts, or bundle 10 loose bolts back into a box.
+- **Bolt Quiver**: a wearable container that holds only wooden bolts (full and short). Wearing one grants +15% reload speed to all crossbows, the same bonus a shotgun shell bandolier gives a shotgun.
 
 ## Where to find it
 
@@ -63,6 +64,10 @@ All recipes are available without books and are built around common survival mat
 - Hammer for crossbow construction.
 - Saw, nails, wire, planks, sticks, branches, saplings, and binding depending on the weapon tier.
 - Carving, Maintenance, Woodwork, and Flint Knapping requirements scale with the item being made.
+- **Crude Crossbow** adds 4 nails to the base wood-and-binding build.
+- **Improved Crossbow** adds duct tape, scotch tape, or aramid thread for reinforcement.
+- **Compound Crossbow** adds nuts & bolts for the pulley mechanism, plus a wrench as a required tool.
+- **Hand Crossbow** adds electric wire, small carved handles, electronics scrap, and duct tape/scotch tape/aramid thread for its compact mechanism.
 
 ## Item weights
 
@@ -149,7 +154,7 @@ PZCrossbows/
 - Multiplayer and co-op hosting
 - Mod ID: `PZCrossbows`
 - Workshop ID: `3758880254`
-- Mod version: `1.0.2`
+- Mod version: `1.0.3`
 
 ## Author
 
