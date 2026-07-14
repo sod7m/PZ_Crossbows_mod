@@ -1,5 +1,14 @@
 VERSION = 1,
 
+option PZCrossbows.LootSpawnMult {
+    page = PZCrossbows,
+    translation = PZCrossbows_LootSpawnMult,
+    type = double,
+    min = 0.0,
+    max = 1000.0,
+    default = 1.0,
+}
+
 option PZCrossbows.CrudeCrossbowSpawnMult {
     page = PZCrossbows,
     translation = PZCrossbows_CrudeCrossbowSpawnMult,

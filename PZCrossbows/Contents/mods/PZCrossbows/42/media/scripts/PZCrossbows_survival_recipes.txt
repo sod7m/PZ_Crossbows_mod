@@ -273,4 +273,29 @@ module Base
 			item 1 PZCrossbows.ShortWoodBoltBox,
 		}
 	}
+
+	craftRecipe PZC_SewBoltQuiver
+	{
+		timedAction = SewingCloth,
+		Time = 400,
+		Tags = AnySurfaceCraft,
+		xpAward = Tailoring:55,
+		AllowBatchCraft = false,
+		category = Tailoring,
+		SkillRequired = Tailoring:2,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:scissors] mode:keep flags[IsNotDull;MayDegradeLight],
+			item 1 tags[base:sewingneedle] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:awl] mode:keep flags[MayDegradeLight],
+			item 4 [Base.LeatherStrips] mode:destroy,
+			item 4 tags[base:heavythread],
+			item 1 [Base.Buckle],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.BoltQuiver,
+		}
+	}
 }

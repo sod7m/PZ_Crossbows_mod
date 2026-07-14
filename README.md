@@ -91,14 +91,17 @@ All recipes are available without books and are built around common survival mat
 
 | Option | Default | Range | Description |
 |---|---:|---:|---|
-| Crude Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for crude crossbows. |
-| Improved Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for improved crossbows. |
-| Compound Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for compound crossbows. |
-| Hand Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Loot spawn multiplier for hand crossbows. |
+| Overall Loot Spawn Multiplier | 1.0 | 0.0-1000.0 | Multiplies all mod container loot and foraging spawns; combines with the individual crossbow multipliers below. |
+| Crude Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Container and foraging spawn multiplier for crude crossbows. |
+| Improved Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Container and foraging spawn multiplier for improved crossbows. |
+| Compound Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Container and foraging spawn multiplier for compound crossbows and full-size bolts. |
+| Hand Crossbow Spawn Multiplier | 1.0 | 0.0-1000.0 | Container and foraging spawn multiplier for hand crossbows and short bolts. |
 | Wood Bolt Base Break Chance | 40% | 0-100 | Base chance for a recovered full-size bolt to break. |
 | Wood Bolt Break Chance Scaling | 3% | 0-100 | Additional break chance scaling for full-size bolts. |
 | Short Wood Bolt Base Break Chance | 50% | 0-100 | Base chance for a recovered short bolt to break. |
 | Short Wood Bolt Break Chance Scaling | 3% | 0-100 | Additional break chance scaling for short bolts. |
+
+The bolt quiver uses the overall multiplier. Full-size bolt spawns use the overall multiplier multiplied by the compound-crossbow multiplier; short bolt spawns use the overall multiplier multiplied by the hand-crossbow multiplier.
 
 ## Installation
 

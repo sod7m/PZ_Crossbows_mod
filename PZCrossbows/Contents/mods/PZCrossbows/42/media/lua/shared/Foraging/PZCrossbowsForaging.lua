@@ -266,7 +266,47 @@ local itemsToAdd = {
 		canBeAboveFloor = true,
 	},
 }
+
+	-- The quiver can be found through foraging anywhere the hand crossbow can.
+	-- Copy the zone table so scaling one definition never mutates the other.
+	itemsToAdd.BoltQuiver = {
+		type = "PZCrossbows.BoltQuiver",
+		minCount = 1,
+		maxCount = 1,
+		xp = 10,
+		skill = 4,
+		categories = { "Junk" },
+		zones = {},
+		spawnFuncs = { doGenericItemSpawn },
+		forceOutside = false,
+		canBeAboveFloor = true,
+	}
+	for zoneName, weight in pairs(itemsToAdd.HandCrossbow.zones) do
+		itemsToAdd.BoltQuiver.zones[zoneName] = weight
+	end
+
+	local vars = SandboxVars.PZCrossbows
+	local lootSpawnMult = vars.LootSpawnMult or 1
+	local itemMultipliers = {
+		CompoundCrossbow = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
+		ImprovedCrossbow = lootSpawnMult * vars.ImprovedCrossbowSpawnMult,
+		CrudeCrossbow = lootSpawnMult * vars.CrudeCrossbowSpawnMult,
+		HandCrossbow = lootSpawnMult * vars.HandCrossbowSpawnMult,
+		ShortBolts = lootSpawnMult * vars.HandCrossbowSpawnMult,
+		ShortBrokenBolts = lootSpawnMult * vars.HandCrossbowSpawnMult,
+		ShortBoltShaft = lootSpawnMult * vars.HandCrossbowSpawnMult,
+		Bolts = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
+		BrokenBolts = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
+		BoltShaft = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
+		BoltHeads = lootSpawnMult,
+		BoltQuiver = lootSpawnMult,
+	}
+
 	for itemName, itemDef in pairs(itemsToAdd) do
+		local multiplier = itemMultipliers[itemName] or lootSpawnMult
+		for zoneName, weight in pairs(itemDef.zones) do
+			itemDef.zones[zoneName] = weight * multiplier
+		end
 		forageSystem.addItemDef(itemDef)
 	end;
 end);
