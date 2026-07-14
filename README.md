@@ -112,7 +112,7 @@ Every mod item's spawn weight is the Overall Loot Spawn Multiplier stacked (mult
 
 ### Steam Workshop
 
-Subscribe on the [Steam Workshop page]([https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254](https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254)), restart Project Zomboid if it is already running, and enable **PZ Simple Crossbows** in the Mods menu.
+Subscribe on the [Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254), restart Project Zomboid if it is already running, and enable **PZ Simple Crossbows** in the Mods menu.
 
 ### Multiplayer hosting
 
