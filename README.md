@@ -54,6 +54,10 @@ Crossbows and bolts spawn as ordinary civilian loot — never in police or milit
 - **Bars**: a Hand Crossbow and a box of short bolts can turn up under the counter, alongside the usual sawn-off shotguns.
 - **Camping gear, crates, lockers, and wardrobes**: a rare chance at a Compound Crossbow as a bonus find.
 
+A **Bolt Quiver** can turn up alongside the crossbows in every location above.
+
+Crossbows, the quiver, and bolts can also be found while **foraging** outdoors (forests, farmland, town zones, trailer parks) — the same sandbox multipliers apply to both container loot and foraging spawns.
+
 Spawn rates for each crossbow tier are tunable via the sandbox options below.
 
 ## Crafting
@@ -68,6 +72,7 @@ All recipes are available without books and are built around common survival mat
 - **Improved Crossbow** adds duct tape, scotch tape, or aramid thread for reinforcement.
 - **Compound Crossbow** adds nuts & bolts for the pulley mechanism, plus a wrench as a required tool.
 - **Hand Crossbow** adds electric wire, small carved handles, electronics scrap, and duct tape/scotch tape/aramid thread for its compact mechanism.
+- **Bolt Quiver** is sewn instead of built: scissors, a sewing needle, and an awl (tools), plus 4 leather strips, heavy thread, and a buckle (consumed). Requires Tailoring 2.
 
 ## Item weights
 
@@ -101,7 +106,7 @@ All recipes are available without books and are built around common survival mat
 | Short Wood Bolt Base Break Chance | 50% | 0-100 | Base chance for a recovered short bolt to break. |
 | Short Wood Bolt Break Chance Scaling | 3% | 0-100 | Additional break chance scaling for short bolts. |
 
-The bolt quiver uses the overall multiplier. Full-size bolt spawns use the overall multiplier multiplied by the compound-crossbow multiplier; short bolt spawns use the overall multiplier multiplied by the hand-crossbow multiplier.
+Every mod item's spawn weight is the Overall Loot Spawn Multiplier stacked (multiplied) with its own tier multiplier, applied identically to both container loot and foraging: crossbows use their own tier multiplier; the Bolt Quiver only uses the overall multiplier (it isn't tied to one specific crossbow tier); full-size bolts (loose and boxed) use the overall multiplier together with the Compound Crossbow multiplier; short bolts (loose and boxed) use the overall multiplier together with the Hand Crossbow multiplier. Setting the overall multiplier to 0 disables all mod loot and foraging spawns regardless of the individual tier sliders.
 
 ## Installation
 
