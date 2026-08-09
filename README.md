@@ -162,7 +162,7 @@ PZCrossbows/
 - Multiplayer and co-op hosting
 - Mod ID: `PZCrossbows`
 - Workshop ID: `3758880254`
-- Mod version: `1.0.4`
+- Mod version: `1.0.5`
 
 ## Author
 
