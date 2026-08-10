@@ -78,43 +78,6 @@ local function PZCrossbowsCleanupCorpseBoltDuplicates(zombie)
 	end
 end
 
-local PZCrossbowsPendingCorpseCleanups = {}
-local PZCrossbowsPendingWeaponSyncs = {}
-
-local function PZCrossbowsQueueCorpseCleanup(zombie)
-	if not zombie then return end
-	table.insert(PZCrossbowsPendingCorpseCleanups, { zombie = zombie, ticks = 20 })
-end
-
-local function PZCrossbowsQueueWeaponSync(character, weapon)
-	if not character or not weapon then return end
-	table.insert(PZCrossbowsPendingWeaponSyncs, { character = character, weapon = weapon, ticks = 20 })
-end
-
-local function PZCrossbowsOnTick()
-	for i = #PZCrossbowsPendingCorpseCleanups, 1, -1 do
-		local pending = PZCrossbowsPendingCorpseCleanups[i]
-		PZCrossbowsCleanupCorpseBoltDuplicates(pending.zombie)
-		pending.ticks = pending.ticks - 1
-		if pending.ticks <= 0 then
-			table.remove(PZCrossbowsPendingCorpseCleanups, i)
-		end
-	end
-	for i = #PZCrossbowsPendingWeaponSyncs, 1, -1 do
-		local pending = PZCrossbowsPendingWeaponSyncs[i]
-		local weapon = pending.weapon
-		local character = pending.character
-		if character and weapon then
-			syncItemFields(character, weapon)
-			syncHandWeaponFields(character, weapon)
-		end
-		pending.ticks = pending.ticks - 1
-		if pending.ticks <= 0 then
-			table.remove(PZCrossbowsPendingWeaponSyncs, i)
-		end
-	end
-end
-
 local function PZCrossbowsRecoverBoltBatch(zombie, modData, countKey, spawnedKey, intactItem, brokenItem, baseChance, scaling)
 	local count = tonumber(modData[countKey]) or 0
 	if count <= 0 or modData[spawnedKey] == true then return end
@@ -142,7 +105,11 @@ local function PZCrossbowsRecoverBoltBatch(zombie, modData, countKey, spawnedKey
 	modData[spawnedKey] = true
 end
 
+-- Bolt recovery is server authoritative. Without this guard a multiplayer client
+-- runs the whole batch a second time with its own ZombRand roll, so the two sides
+-- can disagree on intact vs broken and the corpse ends up with duplicates.
 local function PZCrossbowsOnZombieDead(zombie)
+	if isClient() then return end
 	if not zombie then return end
 	local modData = zombie:getModData()
 	if not modData then return end
@@ -152,10 +119,10 @@ local function PZCrossbowsOnZombieDead(zombie)
 	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumW", "WSpawned", "PZCrossbows.WoodBolt", "PZCrossbows.BrokenBolt", vars.BoltWBaseBreakChance, vars.BoltWBreakChanceScaling)
 	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumSW", "SWSpawned", "PZCrossbows.ShortWoodBolt", "PZCrossbows.BrokenShortBolt", vars.BoltSWBaseBreakChance, vars.BoltSWBreakChanceScaling)
 	PZCrossbowsCleanupCorpseBoltDuplicates(zombie)
-	PZCrossbowsQueueCorpseCleanup(zombie)
 end
 
 local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
+	if isClient() then return end
 	if not CheckIsCrossbow(weapon) then return end
 	local ammoTypeObj = weapon:getAmmoType()
 	if not ammoTypeObj then return end
@@ -165,12 +132,12 @@ local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
 		modData.BoltNumW = (tonumber(modData.BoltNumW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.WSpawned = false
-		PZCrossbowsDebugPrint("Hit wood_bolt BoltNumW=" .. tostring(modData.BoltNumW))
+		PZCrossbowsDebugPrint("Hit wood_bolt BoltNumW=" .. tostring(modData.BoltNumW) .. " Maintenance=" .. tostring(modData.MaintenanceLevel))
 	elseif ammoType == "pzcrossbows:short_wood_bolt" then
 		modData.BoltNumSW = (tonumber(modData.BoltNumSW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.SWSpawned = false
-		PZCrossbowsDebugPrint("Hit short_wood_bolt BoltNumSW=" .. tostring(modData.BoltNumSW))
+		PZCrossbowsDebugPrint("Hit short_wood_bolt BoltNumSW=" .. tostring(modData.BoltNumSW) .. " Maintenance=" .. tostring(modData.MaintenanceLevel))
 	end
 end
 
@@ -181,7 +148,6 @@ if ISReloadWeaponAction and ISReloadWeaponAction.loadAmmo and not ISReloadWeapon
 		if self and self.gun and CheckIsCrossbow(self.gun) then
 			syncItemFields(self.character, self.gun)
 			syncHandWeaponFields(self.character, self.gun)
-			PZCrossbowsQueueWeaponSync(self.character, self.gun)
 		end
 	end
 	ISReloadWeaponAction.PZCrossbowsLoadAmmoPatched = true
@@ -232,4 +198,3 @@ PZCrossbowsDebugPrint("zPZCrossbowsClient.lua loaded")
 Events.OnPlayerUpdate.Add(PZCrossbowsOnPlayerUpdate)
 Events.OnZombieDead.Add(PZCrossbowsOnZombieDead)
 Events.OnWeaponHitCharacter.Add(PZCrossbowsHitCrossbow)
-Events.OnTick.Add(PZCrossbowsOnTick)
