@@ -1,4 +1,4 @@
-local PZCrossbowsDebug = true
+local PZCrossbowsDebug = false
 
 local function PZCrossbowsSide()
 	if isServer() then return "SERVER" end
@@ -115,7 +115,6 @@ local function PZCrossbowsOnZombieDead(zombie)
 	if not modData then return end
 	local vars = SandboxVars and SandboxVars.PZCrossbows
 	if not vars then return end
-	PZCrossbowsDebugPrint("ZombieDead BoltNumW=" .. tostring(modData.BoltNumW) .. " BoltNumSW=" .. tostring(modData.BoltNumSW))
 	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumW", "WSpawned", "PZCrossbows.WoodBolt", "PZCrossbows.BrokenBolt", vars.BoltWBaseBreakChance, vars.BoltWBreakChanceScaling)
 	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumSW", "SWSpawned", "PZCrossbows.ShortWoodBolt", "PZCrossbows.BrokenShortBolt", vars.BoltSWBaseBreakChance, vars.BoltSWBreakChanceScaling)
 	PZCrossbowsCleanupCorpseBoltDuplicates(zombie)
@@ -132,12 +131,10 @@ local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
 		modData.BoltNumW = (tonumber(modData.BoltNumW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.WSpawned = false
-		PZCrossbowsDebugPrint("Hit wood_bolt BoltNumW=" .. tostring(modData.BoltNumW) .. " Maintenance=" .. tostring(modData.MaintenanceLevel))
 	elseif ammoType == "pzcrossbows:short_wood_bolt" then
 		modData.BoltNumSW = (tonumber(modData.BoltNumSW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.SWSpawned = false
-		PZCrossbowsDebugPrint("Hit short_wood_bolt BoltNumSW=" .. tostring(modData.BoltNumSW) .. " Maintenance=" .. tostring(modData.MaintenanceLevel))
 	end
 end
 
