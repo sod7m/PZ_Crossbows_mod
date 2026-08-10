@@ -1,5 +1,15 @@
-local hasModelReset = false
-local hasModelResetDrawn = false
+local PZCrossbowsDebug = true
+
+local function PZCrossbowsSide()
+	if isServer() then return "SERVER" end
+	if isClient() then return "CLIENT" end
+	return "SP"
+end
+
+local function PZCrossbowsDebugPrint(message)
+	if not PZCrossbowsDebug then return end
+	print("[PZCrossbows][" .. PZCrossbowsSide() .. "] " .. message)
+end
 
 local CrossbowItems = {
 	"Crossbow",
@@ -30,9 +40,6 @@ local function PZCrossbowsAddItemsToZombieInventory(zombie, itemType, count)
 	if not inventory or not itemType then return end
 	for i = 1, count do
 		inventory:AddItem(itemType)
-	end
-	if zombie and zombie.sync then
-		zombie:sync()
 	end
 end
 
@@ -141,6 +148,7 @@ local function PZCrossbowsOnZombieDead(zombie)
 	if not modData then return end
 	local vars = SandboxVars and SandboxVars.PZCrossbows
 	if not vars then return end
+	PZCrossbowsDebugPrint("ZombieDead BoltNumW=" .. tostring(modData.BoltNumW) .. " BoltNumSW=" .. tostring(modData.BoltNumSW))
 	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumW", "WSpawned", "PZCrossbows.WoodBolt", "PZCrossbows.BrokenBolt", vars.BoltWBaseBreakChance, vars.BoltWBreakChanceScaling)
 	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumSW", "SWSpawned", "PZCrossbows.ShortWoodBolt", "PZCrossbows.BrokenShortBolt", vars.BoltSWBaseBreakChance, vars.BoltSWBreakChanceScaling)
 	PZCrossbowsCleanupCorpseBoltDuplicates(zombie)
@@ -157,12 +165,12 @@ local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
 		modData.BoltNumW = (tonumber(modData.BoltNumW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.WSpawned = false
-		target:sync()
+		PZCrossbowsDebugPrint("Hit wood_bolt BoltNumW=" .. tostring(modData.BoltNumW))
 	elseif ammoType == "pzcrossbows:short_wood_bolt" then
 		modData.BoltNumSW = (tonumber(modData.BoltNumSW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.SWSpawned = false
-		target:sync()
+		PZCrossbowsDebugPrint("Hit short_wood_bolt BoltNumSW=" .. tostring(modData.BoltNumSW))
 	end
 end
 
@@ -179,55 +187,47 @@ if ISReloadWeaponAction and ISReloadWeaponAction.loadAmmo and not ISReloadWeapon
 	ISReloadWeaponAction.PZCrossbowsLoadAmmoPatched = true
 end
 
+local PZCrossbowsModels = {
+	Crossbow = {
+		empty = { sprite = "PZCrossbows.CrossBow", texture = "media/textures/Item_CrossBow.png" },
+		drawn = { sprite = "PZCrossbows.CrossBowDrawn", texture = "media/textures/Item_CrossBowDrawn.png" },
+	},
+	ImprovedCrossBow = {
+		empty = { sprite = "PZCrossbows.ImprovedCrossBow", texture = "media/textures/Item_ImprovedCrossBow.png" },
+		drawn = { sprite = "PZCrossbows.ImprovedCrossBowDrawn", texture = "media/textures/Item_ImprovedCrossBowDrawn.png" },
+	},
+	CompoundCrossBow = {
+		empty = { sprite = "PZCrossbows.CompoundCrossBow", texture = "media/textures/Item_CompoundCrossBow.png" },
+		drawn = { sprite = "PZCrossbows.CompoundCrossBowDrawn", texture = "media/textures/Item_CompoundCrossBowDrawn.png" },
+	},
+	HandCrossBow = {
+		empty = { sprite = "PZCrossbows.HandCrossBow", texture = "media/textures/Item_HandCrossBow.png" },
+		drawn = { sprite = "PZCrossbows.HandCrossBowDrawn", texture = "media/textures/Item_HandCrossBowDrawn.png" },
+	},
+}
+
+-- The wanted sprite is derived from the weapon itself every update, so no state is
+-- kept between players or between weapons. resetEquippedHandsModels() only runs on
+-- the frame the sprite actually changes.
 local function PZCrossbowsOnPlayerUpdate(player)
 	local weapon = player:getPrimaryHandItem()
-	if weapon == nil or not CheckIsCrossbow(weapon) then return end
-	if weapon:getType() == "HandCrossBow" then
-		if weapon:getCurrentAmmoCount() > 0 and hasModelReset == false then
-			weapon:setWeaponSprite("PZCrossbows.HandCrossBowDrawn")
-			weapon:setTexture(getTexture("media/textures/Item_HandCrossBowDrawn.png"))
-			player:resetEquippedHandsModels()
-			hasModelReset = true
-			hasModelResetDrawn = false
-		elseif weapon:getCurrentAmmoCount() <= 0 and hasModelResetDrawn == false then
-			weapon:setWeaponSprite("PZCrossbows.HandCrossBow")
-			weapon:setTexture(getTexture("media/textures/Item_HandCrossBow.png"))
-			player:resetEquippedHandsModels()
-			hasModelResetDrawn = true
-			hasModelReset = false
-		end
-		return
+	if weapon == nil then return end
+	local models = PZCrossbowsModels[weapon:getType()]
+	if models == nil then return end
+	local wanted = models.empty
+	if weapon:getCurrentAmmoCount() > 0 then
+		wanted = models.drawn
 	end
-	if weapon:getCurrentAmmoCount() == 0 and hasModelReset == false then
-		if weapon:getType() == "Crossbow" then
-			weapon:setWeaponSprite("PZCrossbows.CrossBow")
-			weapon:setTexture(getTexture("media/textures/Item_CrossBow.png"))
-		elseif weapon:getType() == "ImprovedCrossBow" then
-			weapon:setWeaponSprite("PZCrossbows.ImprovedCrossBow")
-			weapon:setTexture(getTexture("media/textures/Item_ImprovedCrossBow.png"))
-		elseif weapon:getType() == "CompoundCrossBow" then
-			weapon:setWeaponSprite("PZCrossbows.CompoundCrossBow")
-			weapon:setTexture(getTexture("media/textures/Item_CompoundCrossBow.png"))
-		end
-		player:resetEquippedHandsModels()
-		hasModelReset = true
-		hasModelResetDrawn = false
-	elseif weapon:getCurrentAmmoCount() == 1 and hasModelResetDrawn == false then
-		if weapon:getType() == "Crossbow" then
-			weapon:setWeaponSprite("PZCrossbows.CrossBowDrawn")
-			weapon:setTexture(getTexture("media/textures/Item_CrossBowDrawn.png"))
-		elseif weapon:getType() == "ImprovedCrossBow" then
-			weapon:setWeaponSprite("PZCrossbows.ImprovedCrossBowDrawn")
-			weapon:setTexture(getTexture("media/textures/Item_ImprovedCrossBowDrawn.png"))
-		elseif weapon:getType() == "CompoundCrossBow" then
-			weapon:setWeaponSprite("PZCrossbows.CompoundCrossBowDrawn")
-			weapon:setTexture(getTexture("media/textures/Item_CompoundCrossBowDrawn.png"))
-		end
-		player:resetEquippedHandsModels()
-		hasModelResetDrawn = true
-		hasModelReset = false
+	if weapon:getWeaponSprite() == wanted.sprite then return end
+	weapon:setWeaponSprite(wanted.sprite)
+	local texture = getTexture(wanted.texture)
+	if texture then
+		weapon:setTexture(texture)
 	end
+	player:resetEquippedHandsModels()
 end
+
+PZCrossbowsDebugPrint("zPZCrossbowsClient.lua loaded")
 
 Events.OnPlayerUpdate.Add(PZCrossbowsOnPlayerUpdate)
 Events.OnZombieDead.Add(PZCrossbowsOnZombieDead)
