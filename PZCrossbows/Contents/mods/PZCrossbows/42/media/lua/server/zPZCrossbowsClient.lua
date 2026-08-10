@@ -1,14 +1,19 @@
-local PZCrossbowsDebug = false
-
 local function PZCrossbowsSide()
 	if isServer() then return "SERVER" end
 	if isClient() then return "CLIENT" end
 	return "SP"
 end
 
-local function PZCrossbowsDebugPrint(message)
-	if not PZCrossbowsDebug then return end
-	print("[PZCrossbows][" .. PZCrossbowsSide() .. "] " .. message)
+-- Driven by the DebugLogging sandbox option, off by default. Values are passed as
+-- separate arguments so nothing is concatenated while logging is disabled.
+local function PZCrossbowsDebugPrint(...)
+	local vars = SandboxVars and SandboxVars.PZCrossbows
+	if not vars or vars.DebugLogging ~= true then return end
+	local parts = { "[PZCrossbows][", PZCrossbowsSide(), "] " }
+	for i = 1, select("#", ...) do
+		parts[#parts + 1] = tostring((select(i, ...)))
+	end
+	print(table.concat(parts))
 end
 
 local CrossbowItems = {
@@ -101,6 +106,7 @@ local function PZCrossbowsRecoverBoltBatch(zombie, modData, countKey, spawnedKey
 		itemType = intactItem
 	end
 	PZCrossbowsAddItemsToZombieInventory(zombie, itemType, count)
+	PZCrossbowsDebugPrint("recovered ", count, " x ", itemType, " (chance=", recoveryChance, "%, maintenance=", maintenanceLevel, ")")
 	modData[countKey] = 0
 	modData[spawnedKey] = true
 end
@@ -131,10 +137,12 @@ local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
 		modData.BoltNumW = (tonumber(modData.BoltNumW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.WSpawned = false
+		PZCrossbowsDebugPrint("hit with wood bolt, lodged=", modData.BoltNumW, " maintenance=", modData.MaintenanceLevel)
 	elseif ammoType == "pzcrossbows:short_wood_bolt" then
 		modData.BoltNumSW = (tonumber(modData.BoltNumSW) or 0) + 1
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.SWSpawned = false
+		PZCrossbowsDebugPrint("hit with short wood bolt, lodged=", modData.BoltNumSW, " maintenance=", modData.MaintenanceLevel)
 	end
 end
 
@@ -190,8 +198,15 @@ local function PZCrossbowsOnPlayerUpdate(player)
 	player:resetEquippedHandsModels()
 end
 
-PZCrossbowsDebugPrint("zPZCrossbowsClient.lua loaded")
+-- Announced from a start event rather than at file load, because SandboxVars is not
+-- populated yet while the Lua files are being read.
+local function PZCrossbowsAnnounce()
+	PZCrossbowsDebugPrint("debug logging is on")
+end
 
 Events.OnPlayerUpdate.Add(PZCrossbowsOnPlayerUpdate)
 Events.OnZombieDead.Add(PZCrossbowsOnZombieDead)
 Events.OnWeaponHitCharacter.Add(PZCrossbowsHitCrossbow)
+
+if Events.OnGameStart then Events.OnGameStart.Add(PZCrossbowsAnnounce) end
+if Events.OnServerStarted then Events.OnServerStarted.Add(PZCrossbowsAnnounce) end

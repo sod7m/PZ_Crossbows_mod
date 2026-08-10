@@ -17,5 +17,7 @@
   "Sandbox_PZCrossbows_BoltSWBaseBreakChance": "Шанс повернути короткий дерев'яний болт цілим",
   "Sandbox_PZCrossbows_BoltSWBaseBreakChance_tooltip": "Базовий шанс, що застряглий короткий дерев'яний болт повернеться цілим, а не зламаним.",
   "Sandbox_PZCrossbows_BoltSWBreakChanceScaling": "Бонус повернення короткого дерев'яного болта за рівень догляду",
-  "Sandbox_PZCrossbows_BoltSWBreakChanceScaling_tooltip": "Додатковий шанс повернути болт цілим за кожен рівень навички догляду."
+  "Sandbox_PZCrossbows_BoltSWBreakChanceScaling_tooltip": "Додатковий шанс повернути болт цілим за кожен рівень навички догляду.",
+  "Sandbox_PZCrossbows_DebugLogging": "Діагностичне логування",
+  "Sandbox_PZCrossbows_DebugLogging_tooltip": "Записує діагностику PZ Crossbows у консоль і файли логів: який бік обробляє постріл, лічильники болтів та кидки на повернення. Вмикайте лише для звіту про баг, бо логи стають гучними."
 }

@@ -81,3 +81,10 @@ option PZCrossbows.BoltSWBreakChanceScaling {
     default = 3,
 }
 
+option PZCrossbows.DebugLogging {
+    page = PZCrossbows,
+    translation = PZCrossbows_DebugLogging,
+    type = boolean,
+    default = false,
+}
+
