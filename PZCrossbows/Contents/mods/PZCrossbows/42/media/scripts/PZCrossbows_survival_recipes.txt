@@ -5,7 +5,7 @@ module Base
 		timedAction = Making,
 		Time = 70,
 		Tags = InHandCraft,
-		xpAward = Carving:3,
+		xpAward = Carving:13,
 		category = Carving,
 		SkillRequired = Carving:1,
 		needTobeLearn = false,
@@ -16,7 +16,7 @@ module Base
 		}
 		outputs
 		{
-			item 4 PZCrossbows.WoodBoltShaft,
+			item 5 PZCrossbows.WoodBoltShaft,
 		}
 	}
 
@@ -25,7 +25,7 @@ module Base
 		timedAction = Making,
 		Time = 60,
 		Tags = InHandCraft,
-		xpAward = Carving:3,
+		xpAward = Carving:13,
 		category = Carving,
 		SkillRequired = Carving:1,
 		needTobeLearn = false,
@@ -36,7 +36,7 @@ module Base
 		}
 		outputs
 		{
-			item 8 PZCrossbows.ShortWoodBoltShaft,
+			item 10 PZCrossbows.ShortWoodBoltShaft,
 		}
 	}
 
@@ -45,18 +45,18 @@ module Base
 		timedAction = Making,
 		Time = 90,
 		Tags = InHandCraft,
-		xpAward = FlintKnapping:8,
+		xpAward = FlintKnapping:38,
 		category = Knapping,
 		SkillRequired = FlintKnapping:1,
 		needTobeLearn = false,
 		inputs
 		{
 			item 1 [Base.SharpedStone;Base.FlintNodule;Base.SharpBoneFragment] flags[AllowDestroyedItem],
-			item 1 tags[base:hammerstone;base:knappingtool] mode:keep flags[MayDegradeLight],
+			item 1 tags[base:hammerstone;base:mallet;base:knappingtool] mode:keep flags[MayDegradeLight],
 		}
 		outputs
 		{
-			item 3 PZCrossbows.StoneBoltHead,
+			item 5 PZCrossbows.StoneBoltHead,
 		}
 	}
 
@@ -65,7 +65,7 @@ module Base
 		timedAction = Making,
 		Time = 70,
 		Tags = InHandCraft,
-		xpAward = Carving:4,
+		xpAward = Carving:13,
 		category = Assembly,
 		SkillRequired = Carving:1,
 		needTobeLearn = false,
@@ -88,7 +88,7 @@ module Base
 		timedAction = Making,
 		Time = 60,
 		Tags = InHandCraft,
-		xpAward = Carving:4,
+		xpAward = Carving:13,
 		category = Assembly,
 		SkillRequired = Carving:1,
 		needTobeLearn = false,
@@ -111,7 +111,7 @@ module Base
 		timedAction = Making,
 		Time = 220,
 		Tags = AnySurfaceCraft,
-		xpAward = Carving:12,
+		xpAward = Carving:30,
 		category = Weaponry,
 		SkillRequired = Maintenance:1,
 		needTobeLearn = false,
@@ -134,7 +134,7 @@ module Base
 		timedAction = Making,
 		Time = 220,
 		Tags = AnySurfaceCraft,
-		xpAward = Carving:12,
+		xpAward = Carving:30,
 		category = Weaponry,
 		SkillRequired = Maintenance:1;Woodwork:2,
 		needTobeLearn = false,
@@ -161,7 +161,7 @@ module Base
 		timedAction = Making,
 		Time = 360,
 		Tags = AnySurfaceCraft,
-		xpAward = Carving:18,
+		xpAward = Carving:45,
 		category = Weaponry,
 		SkillRequired = Maintenance:1;Woodwork:2,
 		needTobeLearn = false,
@@ -187,7 +187,7 @@ module Base
 		timedAction = Making,
 		Time = 480,
 		Tags = AnySurfaceCraft,
-		xpAward = Carving:22,
+		xpAward = Carving:60,
 		category = Weaponry,
 		SkillRequired = Maintenance:2;Woodwork:4,
 		needTobeLearn = false,
