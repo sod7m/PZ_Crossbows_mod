@@ -4,10 +4,10 @@
 
 # PZ Simple Crossbows
 
-PZ Simple Crossbows is a standalone, lore-friendly crossbow pack for **Project Zomboid Build 42.20**. It adds practical craftable ranged weapons, handmade ammunition, custom models, icons, sounds, recipes, loot distribution, sandbox tuning, and English/Ukrainian localization.
+PZ Simple Crossbows is a standalone, lore-friendly crossbow pack for **Project Zomboid Build 42.20.4**. It adds practical craftable ranged weapons, handmade ammunition, custom models, icons, sounds, recipes, loot distribution, sandbox tuning, and English/Ukrainian localization.
 
 [![Steam Workshop](https://img.shields.io/badge/Steam-Workshop-1b2838?logo=steam&logoColor=white)](https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254)
-![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2042.20-b08b57)
+![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2042.20.4-b08b57)
 ![Multiplayer](https://img.shields.io/badge/Multiplayer-Supported-4c8c4a)
 ![Mod ID](https://img.shields.io/badge/Mod%20ID-PZCrossbows-d6a65a)
 
@@ -27,7 +27,7 @@ PZ Simple Crossbows is a standalone, lore-friendly crossbow pack for **Project Z
 | Weapon | Role | Notes |
 |---|---|---|
 | Crude Crossbow | Early survival weapon | Simple, rough, craftable from basic wood and binding. |
-| Improved Crossbow | Reliable mid-tier option | Better range and accuracy, supports scopes. |
+| Improved Crossbow | Reliable mid-tier option | Better range and accuracy. |
 | Compound Crossbow | Heavy hitter | Strongest damage profile, slower reload, supports scopes. |
 | Hand Crossbow | Compact repeater | One-handed sidearm that uses short bolts and holds four shots. |
 
@@ -157,12 +157,12 @@ PZCrossbows/
 
 ## Compatibility
 
-- Project Zomboid **Build 42.20**
+- Project Zomboid **Build 42.20.4**
 - Singleplayer
 - Multiplayer and co-op hosting
 - Mod ID: `PZCrossbows`
 - Workshop ID: `3758880254`
-- Mod version: `1.0.5`
+- Mod version: `1.0.8`
 
 ## Author
 
