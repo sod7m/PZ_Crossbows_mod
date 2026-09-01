@@ -1,82 +1,94 @@
 require 'Items/ProceduralDistributions'
 
--- Standard weight per tier, in the same range vanilla uses for common guns (4-10).
--- The overall loot multiplier affects container loot and foraging (scaled in
--- PZCrossbowsForaging.lua). Crossbows and
--- their matching bolt types are also scaled by their existing tier multiplier.
-local LOOT_SPAWN_MULT = SandboxVars.PZCrossbows.LootSpawnMult or 1
-local CRUDE_WEIGHT = 4 * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.CrudeCrossbowSpawnMult
-local IMPROVED_WEIGHT = 6 * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.ImprovedCrossbowSpawnMult
-local COMPOUND_WEIGHT = 8 * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.CompoundCrossbowSpawnMult
-local HAND_WEIGHT = 6 * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.HandCrossbowSpawnMult
-local QUIVER_WEIGHT = 6 * LOOT_SPAWN_MULT
--- These spawn as WoodBoltBox/ShortWoodBoltBox (a box of 10), matching how
--- vanilla ammo always spawns as a boxed stack rather than loose rounds.
-local WOODBOLT_WEIGHT = 20 * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.CompoundCrossbowSpawnMult
-local SHORTWOODBOLT_WEIGHT = 15 * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.HandCrossbowSpawnMult
-
--- Adds all 4 crossbow tiers to a list, so a location never offers only one
--- size/tier of crossbow (mirrors vanilla always offering full+sawnoff shotgun
--- together, full gun roster in FirearmWeapons_Mid/Late, etc). Pass hasAmmo=true
--- for lists that aren't flagged dontSpawnAmmo, to also add both bolt types.
-local function addCrossbows(listName, hasAmmo)
-	local items = ProceduralDistributions["list"][listName].items
-	table.insert(items, "PZCrossbows.Crossbow")
-	table.insert(items, CRUDE_WEIGHT)
-	table.insert(items, "PZCrossbows.ImprovedCrossBow")
-	table.insert(items, IMPROVED_WEIGHT)
-	table.insert(items, "PZCrossbows.CompoundCrossBow")
-	table.insert(items, COMPOUND_WEIGHT)
-	table.insert(items, "PZCrossbows.HandCrossBow")
-	table.insert(items, HAND_WEIGHT)
-	table.insert(items, "PZCrossbows.BoltQuiver")
-	table.insert(items, QUIVER_WEIGHT)
-	if hasAmmo then
-		table.insert(items, "PZCrossbows.WoodBoltBox")
-		table.insert(items, WOODBOLT_WEIGHT)
-		table.insert(items, "PZCrossbows.ShortWoodBoltBox")
-		table.insert(items, SHORTWOODBOLT_WEIGHT)
+local function setOrRemoveItem(itemsTable, itemType, weight)
+	if not itemsTable or not itemType then return end
+	local found = false
+	for i = #itemsTable - 1, 1, -2 do
+		if itemsTable[i] == itemType then
+			if weight and weight > 0 then
+				itemsTable[i + 1] = weight
+				found = true
+			else
+				table.remove(itemsTable, i + 1)
+				table.remove(itemsTable, i)
+			end
+		end
+	end
+	if not found and weight and weight > 0 then
+		table.insert(itemsTable, itemType)
+		table.insert(itemsTable, weight)
 	end
 end
 
--- Survivor safehouse/cache loot (vanilla uses the identical gun roster across
--- all three of these, just with different roll counts - do the same here).
-addCrossbows("FirearmWeapons", true)
-addCrossbows("FirearmWeapons_Mid", true)
-addCrossbows("FirearmWeapons_Late", true)
+local function PZCrossbowsUpdateDistributions()
+	local vars = SandboxVars and SandboxVars.PZCrossbows
+	local lootSpawnMult = (vars and vars.LootSpawnMult) or 1
+	if lootSpawnMult < 0 then lootSpawnMult = 0 end
 
--- Ordinary houses: closets, garages, living rooms, storage units.
-addCrossbows("Hunter", false)
+	local crudeMult = (vars and vars.CrudeCrossbowSpawnMult) or 1
+	local improvedMult = (vars and vars.ImprovedCrossbowSpawnMult) or 1
+	local compoundMult = (vars and vars.CompoundCrossbowSpawnMult) or 1
+	local handMult = (vars and vars.HandCrossbowSpawnMult) or 1
 
--- Pawn Shop weapon racks/lockers (pawnshopoffice room).
-addCrossbows("GunStoreGuns", false)
+	local crudeWeight = 4 * lootSpawnMult * crudeMult
+	local improvedWeight = 6 * lootSpawnMult * improvedMult
+	local compoundWeight = 8 * lootSpawnMult * compoundMult
+	local handWeight = 6 * lootSpawnMult * handMult
+	local quiverWeight = 6 * lootSpawnMult
+	local woodBoltWeight = 20 * lootSpawnMult * compoundMult
+	local shortWoodBoltWeight = 15 * lootSpawnMult * handMult
 
--- Rifle rack/display case (gunstore, hunting store, army surplus rooms).
-addCrossbows("GunStoreRifles", false)
+	local function updateCrossbows(listName, hasAmmo)
+		local entry = ProceduralDistributions["list"] and ProceduralDistributions["list"][listName]
+		if not entry or not entry.items then return end
+		local items = entry.items
+		setOrRemoveItem(items, "PZCrossbows.Crossbow", crudeWeight)
+		setOrRemoveItem(items, "PZCrossbows.ImprovedCrossBow", improvedWeight)
+		setOrRemoveItem(items, "PZCrossbows.CompoundCrossBow", compoundWeight)
+		setOrRemoveItem(items, "PZCrossbows.HandCrossBow", handWeight)
+		setOrRemoveItem(items, "PZCrossbows.BoltQuiver", quiverWeight)
+		if hasAmmo then
+			setOrRemoveItem(items, "PZCrossbows.WoodBoltBox", woodBoltWeight)
+			setOrRemoveItem(items, "PZCrossbows.ShortWoodBoltBox", shortWoodBoltWeight)
+		else
+			setOrRemoveItem(items, "PZCrossbows.WoodBoltBox", 0)
+			setOrRemoveItem(items, "PZCrossbows.ShortWoodBoltBox", 0)
+		end
+	end
 
--- "Gun under the bar counter" slot - vanilla already mixes full-size and
--- sawnoff shotguns here, so every crossbow size belongs too.
-addCrossbows("BarCounterWeapon", true)
+	updateCrossbows("FirearmWeapons", true)
+	updateCrossbows("FirearmWeapons_Mid", true)
+	updateCrossbows("FirearmWeapons_Late", true)
+	updateCrossbows("Hunter", false)
+	updateCrossbows("GunStoreGuns", false)
+	updateCrossbows("GunStoreRifles", false)
+	updateCrossbows("BarCounterWeapon", true)
 
--- Ammo shelves/lockers (pawn shop, gun store, hunting store, army surplus -
--- civilian rooms only, verified against Distributions.lua).
-table.insert(ProceduralDistributions["list"]["GunStoreAmmunition"].items, "PZCrossbows.WoodBoltBox")
-table.insert(ProceduralDistributions["list"]["GunStoreAmmunition"].items, WOODBOLT_WEIGHT)
-table.insert(ProceduralDistributions["list"]["GunStoreAmmunition"].items, "PZCrossbows.ShortWoodBoltBox")
-table.insert(ProceduralDistributions["list"]["GunStoreAmmunition"].items, SHORTWOODBOLT_WEIGHT)
+	local ammoList = ProceduralDistributions["list"] and ProceduralDistributions["list"]["GunStoreAmmunition"]
+	if ammoList and ammoList.items then
+		setOrRemoveItem(ammoList.items, "PZCrossbows.WoodBoltBox", woodBoltWeight)
+		setOrRemoveItem(ammoList.items, "PZCrossbows.ShortWoodBoltBox", shortWoodBoltWeight)
+	end
 
--- Rare bonus finds in general storage. These lists have no other guns in them,
--- so add the compound crossbow and its quiver as rare surprise items rather
--- than the complete weapon roster.
-local function addRareCampingLoot(listName, baseWeight)
-	local items = ProceduralDistributions["list"][listName].items
-	table.insert(items, "PZCrossbows.CompoundCrossBow")
-	table.insert(items, baseWeight * LOOT_SPAWN_MULT * SandboxVars.PZCrossbows.CompoundCrossbowSpawnMult)
-	table.insert(items, "PZCrossbows.BoltQuiver")
-	table.insert(items, baseWeight * LOOT_SPAWN_MULT)
+	local function updateRareCampingLoot(listName, baseWeight)
+		local entry = ProceduralDistributions["list"] and ProceduralDistributions["list"][listName]
+		if not entry or not entry.items then return end
+		setOrRemoveItem(entry.items, "PZCrossbows.CompoundCrossBow", baseWeight * lootSpawnMult * compoundMult)
+		setOrRemoveItem(entry.items, "PZCrossbows.BoltQuiver", baseWeight * lootSpawnMult)
+	end
+
+	updateRareCampingLoot("CampingStoreGear", 3)
+	updateRareCampingLoot("CrateCamping", 0.12)
+	updateRareCampingLoot("CampingLockers", 0.1)
+	updateRareCampingLoot("WardrobeRedneck", 0.1)
+
+	if IsoWorld and IsoWorld.parseDistributions then
+		IsoWorld.parseDistributions()
+	end
 end
 
-addRareCampingLoot("CampingStoreGear", 3)
-addRareCampingLoot("CrateCamping", 0.12)
-addRareCampingLoot("CampingLockers", 0.1)
-addRareCampingLoot("WardrobeRedneck", 0.1)
+PZCrossbowsUpdateDistributions()
+
+if Events.OnInitGlobalModData then
+	Events.OnInitGlobalModData.Add(PZCrossbowsUpdateDistributions)
+end

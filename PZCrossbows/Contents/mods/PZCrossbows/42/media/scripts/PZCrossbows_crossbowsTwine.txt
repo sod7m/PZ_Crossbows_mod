@@ -7,6 +7,7 @@ module PZCrossbows
 
 	item Crossbow
 	{
+		DisplayCategory = Weapon,
         ImpactSound	=	CrossbowHitBlood,
         MaxRange	=	8,
 		MinSightRange = 2,
@@ -77,6 +78,7 @@ module PZCrossbows
 	
 	item ImprovedCrossBow
 	{
+		DisplayCategory = Weapon,
 		ImpactSound	=	CrossbowHitBlood,
 		MaxRange	=	14,
 		MinSightRange = 2,
@@ -150,6 +152,7 @@ module PZCrossbows
 
 	item CompoundCrossBow
 	{
+		DisplayCategory = Weapon,
 		ImpactSound	=	CrossbowHitBlood,
 		MaxRange	=	16,
 		MinSightRange = 2,
@@ -222,6 +225,7 @@ module PZCrossbows
 
 	item HandCrossBow
 	{
+		DisplayCategory = Weapon,
         ImpactSound	=	CrossbowHitBlood,
         MaxRange	=	10,
         WeaponSprite	=	PZCrossbows.HandCrossBow,

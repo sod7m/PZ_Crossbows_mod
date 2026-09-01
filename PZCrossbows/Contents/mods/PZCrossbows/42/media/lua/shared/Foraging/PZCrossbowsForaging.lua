@@ -285,28 +285,37 @@ local itemsToAdd = {
 		itemsToAdd.BoltQuiver.zones[zoneName] = weight
 	end
 
-	local vars = SandboxVars.PZCrossbows
-	local lootSpawnMult = vars.LootSpawnMult or 1
+	local vars = SandboxVars and SandboxVars.PZCrossbows
+	local lootSpawnMult = (vars and vars.LootSpawnMult) or 1
+	if lootSpawnMult < 0 then lootSpawnMult = 0 end
+
+	local crudeMult = (vars and vars.CrudeCrossbowSpawnMult) or 1
+	local improvedMult = (vars and vars.ImprovedCrossbowSpawnMult) or 1
+	local compoundMult = (vars and vars.CompoundCrossbowSpawnMult) or 1
+	local handMult = (vars and vars.HandCrossbowSpawnMult) or 1
+
 	local itemMultipliers = {
-		CompoundCrossbow = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
-		ImprovedCrossbow = lootSpawnMult * vars.ImprovedCrossbowSpawnMult,
-		CrudeCrossbow = lootSpawnMult * vars.CrudeCrossbowSpawnMult,
-		HandCrossbow = lootSpawnMult * vars.HandCrossbowSpawnMult,
-		ShortBolts = lootSpawnMult * vars.HandCrossbowSpawnMult,
-		ShortBrokenBolts = lootSpawnMult * vars.HandCrossbowSpawnMult,
-		ShortBoltShaft = lootSpawnMult * vars.HandCrossbowSpawnMult,
-		Bolts = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
-		BrokenBolts = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
-		BoltShaft = lootSpawnMult * vars.CompoundCrossbowSpawnMult,
+		CompoundCrossbow = lootSpawnMult * compoundMult,
+		ImprovedCrossbow = lootSpawnMult * improvedMult,
+		CrudeCrossbow = lootSpawnMult * crudeMult,
+		HandCrossbow = lootSpawnMult * handMult,
+		ShortBolts = lootSpawnMult * handMult,
+		ShortBrokenBolts = lootSpawnMult * handMult,
+		ShortBoltShaft = lootSpawnMult * handMult,
+		Bolts = lootSpawnMult * compoundMult,
+		BrokenBolts = lootSpawnMult * compoundMult,
+		BoltShaft = lootSpawnMult * compoundMult,
 		BoltHeads = lootSpawnMult,
 		BoltQuiver = lootSpawnMult,
 	}
 
 	for itemName, itemDef in pairs(itemsToAdd) do
 		local multiplier = itemMultipliers[itemName] or lootSpawnMult
-		for zoneName, weight in pairs(itemDef.zones) do
-			itemDef.zones[zoneName] = weight * multiplier
+		if multiplier > 0 then
+			for zoneName, weight in pairs(itemDef.zones) do
+				itemDef.zones[zoneName] = weight * multiplier
+			end
+			forageSystem.addItemDef(itemDef)
 		end
-		forageSystem.addItemDef(itemDef)
 	end;
 end);
