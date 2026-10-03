@@ -4,10 +4,10 @@
 
 # PZ Simple Crossbows
 
-PZ Simple Crossbows is a standalone, lore-friendly crossbow pack for **Project Zomboid Build 42.20.4**. It adds practical craftable ranged weapons, handmade ammunition, custom models, icons, sounds, recipes, loot distribution, sandbox tuning, and English/Ukrainian localization.
+PZ Simple Crossbows is a standalone, lore-friendly crossbow pack for **Project Zomboid Build 42.21**. It adds practical craftable ranged weapons, handmade ammunition, custom models, icons, sounds, recipes, loot distribution, sandbox tuning, and English/Ukrainian localization.
 
 [![Steam Workshop](https://img.shields.io/badge/Steam-Workshop-1b2838?logo=steam&logoColor=white)](https://steamcommunity.com/sharedfiles/filedetails/?id=3758880254)
-![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2042.20.4-b08b57)
+![Project Zomboid](https://img.shields.io/badge/Project%20Zomboid-Build%2042.21-b08b57)
 ![Multiplayer](https://img.shields.io/badge/Multiplayer-Supported-4c8c4a)
 ![Mod ID](https://img.shields.io/badge/Mod%20ID-PZCrossbows-d6a65a)
 
@@ -157,12 +157,12 @@ PZCrossbows/
 
 ## Compatibility
 
-- Project Zomboid **Build 42.20.4**
+- Project Zomboid **Build 42.21**
 - Singleplayer
 - Multiplayer and co-op hosting
 - Mod ID: `PZCrossbows`
 - Workshop ID: `3758880254`
-- Mod version: `1.0.8`
+- Mod version: `1.0.9`
 
 ## Author
 
