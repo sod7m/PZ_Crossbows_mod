@@ -37,6 +37,8 @@ local function PZCrossbowsUpdateDistributions()
 	local quiverWeight = 6 * lootSpawnMult
 	local woodBoltWeight = 20 * lootSpawnMult * compoundMult
 	local shortWoodBoltWeight = 15 * lootSpawnMult * handMult
+	local metalBoltWeight = 8 * lootSpawnMult * compoundMult
+	local shortMetalBoltWeight = 6 * lootSpawnMult * handMult
 
 	local function updateCrossbows(listName, hasAmmo)
 		local entry = ProceduralDistributions["list"] and ProceduralDistributions["list"][listName]
@@ -50,9 +52,13 @@ local function PZCrossbowsUpdateDistributions()
 		if hasAmmo then
 			setOrRemoveItem(items, "PZCrossbows.WoodBoltBox", woodBoltWeight)
 			setOrRemoveItem(items, "PZCrossbows.ShortWoodBoltBox", shortWoodBoltWeight)
+			setOrRemoveItem(items, "PZCrossbows.MetalBoltBox", metalBoltWeight)
+			setOrRemoveItem(items, "PZCrossbows.ShortMetalBoltBox", shortMetalBoltWeight)
 		else
 			setOrRemoveItem(items, "PZCrossbows.WoodBoltBox", 0)
 			setOrRemoveItem(items, "PZCrossbows.ShortWoodBoltBox", 0)
+			setOrRemoveItem(items, "PZCrossbows.MetalBoltBox", 0)
+			setOrRemoveItem(items, "PZCrossbows.ShortMetalBoltBox", 0)
 		end
 	end
 
@@ -68,6 +74,8 @@ local function PZCrossbowsUpdateDistributions()
 	if ammoList and ammoList.items then
 		setOrRemoveItem(ammoList.items, "PZCrossbows.WoodBoltBox", woodBoltWeight)
 		setOrRemoveItem(ammoList.items, "PZCrossbows.ShortWoodBoltBox", shortWoodBoltWeight)
+		setOrRemoveItem(ammoList.items, "PZCrossbows.MetalBoltBox", metalBoltWeight)
+		setOrRemoveItem(ammoList.items, "PZCrossbows.ShortMetalBoltBox", shortMetalBoltWeight)
 	end
 
 	local function updateRareCampingLoot(listName, baseWeight)

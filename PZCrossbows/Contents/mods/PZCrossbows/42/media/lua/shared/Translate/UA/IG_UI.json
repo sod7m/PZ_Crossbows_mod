@@ -1,3 +1,4 @@
 {
-  "IGUI_PlayerText_PZCrossbows_StringBreak": "Тятива порвалася!"
+  "IGUI_PlayerText_PZCrossbows_StringBreak": "Тятива порвалася!",
+  "IGUI_FirearmRadial_PZCSwitchBolt": "Перемкнути на: %1"
 }

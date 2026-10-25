@@ -73,7 +73,7 @@ module PZCrossbows
         haveChamber = FALSE,
 		ClickSound = CrossbowDryShot,
 		FireMode = Single,
-	    Tags = base:hasmetal;base:firearm,
+	    Tags = base:hasmetal;base:firearm;base:repairwithtape;base:repairwithglue;base:repairwithepoxy,
 	}
 	
 	item ImprovedCrossBow
@@ -147,7 +147,7 @@ module PZCrossbows
 		ModelWeaponPart = x8Scope x8Scope scope scope,
 		ClickSound = CrossbowDryShot,
 		FireMode = Single,
-		Tags = base:hasmetal;base:firearm,
+		Tags = base:hasmetal;base:firearm;base:repairwithtape;base:repairwithglue;base:repairwithepoxy,
 	}
 
 	item CompoundCrossBow
@@ -220,7 +220,7 @@ module PZCrossbows
 		ModelWeaponPart = x8Scope x8Scope scope scope,
 		ClickSound = CrossbowDryShot,
 		FireMode = Single,
-		Tags = base:hasmetal;base:firearm,
+		Tags = base:hasmetal;base:firearm;base:repairwithtape;base:repairwithglue;base:repairwithepoxy,
 	}
 
 	item HandCrossBow
@@ -286,7 +286,25 @@ module PZCrossbows
         RackAfterShoot = TRUE,
 		ClickSound = CrossbowDryShot,
 		FireMode = Single,
-		Tags = base:hasmetal;base:firearm,
+		Tags = base:hasmetal;base:firearm;base:repairwithtape;base:repairwithglue;base:repairwithepoxy,
 	}
 
-}	
+	item PZC_MetalBoltTracerRef
+	{
+		ItemType = base:normal,
+		Weight = 0.1,
+		Icon = MetalBolt,
+		AmmoType = PZCrossbows:metal_bolt,
+		Hidden = TRUE,
+	}
+
+	item PZC_ShortMetalBoltTracerRef
+	{
+		ItemType = base:normal,
+		Weight = 0.1,
+		Icon = ShortMetalBolt,
+		AmmoType = PZCrossbows:short_metal_bolt,
+		Hidden = TRUE,
+	}
+
+}

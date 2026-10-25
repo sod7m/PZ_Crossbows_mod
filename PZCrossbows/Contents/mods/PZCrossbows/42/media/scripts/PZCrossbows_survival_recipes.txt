@@ -60,6 +60,50 @@ module Base
 		}
 	}
 
+	craftRecipe PZC_ForgeMetalBoltHeads
+	{
+		timedAction = HammerMetalStanding,
+		Time = 160,
+		Tags = PrimitiveForge,
+		xpAward = Blacksmith:25,
+		category = Blacksmithing,
+		SkillRequired = Blacksmith:2,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:charcoal],
+			item 1 [Base.ScrapMetal;Base.SmallSheetMetal;Base.IronChunk;Base.SteelChunk;Base.IronBarQuarter;Base.SteelBarQuarter],
+			item 1 tags[base:hammer;base:clubhammer;base:smithinghammer;base:ballpeenhammer] mode:keep flags[Prop1;MayDegradeLight],
+			item 1 tags[base:crudetongs;base:metalworkingpliers;base:tongs] mode:keep flags[Prop2;MayDegradeLight],
+		}
+		outputs
+		{
+			item 5 PZCrossbows.MetalBoltHead,
+		}
+	}
+
+	craftRecipe PZC_WeldMetalBoltHeads
+	{
+		timedAction = Welding,
+		Time = 140,
+		Tags = AnySurfaceCraft;Welding,
+		xpAward = MetalWelding:25,
+		category = Metalworking,
+		SkillRequired = MetalWelding:3,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 [Base.BlowTorch] flags[Prop1],
+			item 1 tags[base:weldingmask] mode:keep,
+			item 1 tags[base:whetstone;base:file;base:smallfiles;base:metalsaw;base:sheetmetalsnips] mode:keep flags[MayDegradeLight],
+			item 1 [Base.SmallSheetMetal;Base.IronBarQuarter;Base.SteelBarQuarter] flags[Prop2],
+		}
+		outputs
+		{
+			item 5 PZCrossbows.MetalBoltHead,
+		}
+	}
+
 	craftRecipe PZC_AssembleWoodBolts
 	{
 		timedAction = Making,
@@ -103,6 +147,69 @@ module Base
 		outputs
 		{
 			item 5 PZCrossbows.ShortWoodBolt,
+		}
+	}
+
+	craftRecipe PZC_AssembleMetalBolts
+	{
+		timedAction = Making,
+		Time = 70,
+		Tags = InHandCraft,
+		xpAward = Carving:15,
+		category = Assembly,
+		SkillRequired = Carving:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 5 [PZCrossbows.WoodBoltShaft],
+			item 5 [PZCrossbows.MetalBoltHead],
+			item 1 [Base.LeatherStrips;Base.LeatherStripsDirty;Base.Scotchtape;Base.DuctTape;Base.Thread_Sinew;Base.Woodglue],
+			item 1 tags[base:binding],
+		}
+		outputs
+		{
+			item 5 PZCrossbows.MetalBolt,
+		}
+	}
+
+	craftRecipe PZC_AssembleShortMetalBolts
+	{
+		timedAction = Making,
+		Time = 60,
+		Tags = InHandCraft,
+		xpAward = Carving:15,
+		category = Assembly,
+		SkillRequired = Carving:1,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 tags[base:sharpknife] mode:keep flags[MayDegrade;IsNotDull],
+			item 5 [PZCrossbows.ShortWoodBoltShaft],
+			item 5 [PZCrossbows.MetalBoltHead],
+			item 1 [Base.LeatherStrips;Base.LeatherStripsDirty;Base.Scotchtape;Base.DuctTape;Base.Thread_Sinew;Base.Woodglue],
+			item 1 tags[base:binding],
+		}
+		outputs
+		{
+			item 5 PZCrossbows.ShortMetalBolt,
+		}
+	}
+
+	craftRecipe PZC_SalvageMetalBoltHead
+	{
+		timedAction = Making,
+		Time = 30,
+		Tags = InHandCraft;CanBeDoneInDark,
+		category = Assembly,
+		needTobeLearn = false,
+		inputs
+		{
+			item 1 [PZCrossbows.BrokenMetalBolt;PZCrossbows.BrokenShortMetalBolt],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.MetalBoltHead,
 		}
 	}
 
@@ -271,6 +378,119 @@ module Base
 		outputs
 		{
 			item 1 PZCrossbows.ShortWoodBoltBox,
+		}
+	}
+
+	craftRecipe PZC_OpenMetalBoltBox
+	{
+		timedAction = OpenAmmoBox,
+		Time = 15,
+		Tags = InHandCraft;CanBeDoneInDark,
+		category = Packing,
+		inputs
+		{
+			item 1 [PZCrossbows.MetalBoltBox] flags[Prop2;AllowFavorite;InheritFavorite],
+		}
+		outputs
+		{
+			item 10 PZCrossbows.MetalBolt,
+		}
+	}
+
+	craftRecipe PZC_OpenShortMetalBoltBox
+	{
+		timedAction = OpenAmmoBox,
+		Time = 15,
+		Tags = InHandCraft;CanBeDoneInDark,
+		category = Packing,
+		inputs
+		{
+			item 1 [PZCrossbows.ShortMetalBoltBox] flags[Prop2;AllowFavorite;InheritFavorite],
+		}
+		outputs
+		{
+			item 10 PZCrossbows.ShortMetalBolt,
+		}
+	}
+
+	craftRecipe PZC_PlaceMetalBoltsInBox
+	{
+		timedAction = PlaceAmmoInBox,
+		Time = 15,
+		Tags = InHandCraft,
+		category = Packing,
+		inputs
+		{
+			item 10 [PZCrossbows.MetalBolt] flags[AllowFavorite;InheritFavorite;IsExclusive],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.MetalBoltBox,
+		}
+	}
+
+	craftRecipe PZC_PlaceShortMetalBoltsInBox
+	{
+		timedAction = PlaceAmmoInBox,
+		Time = 15,
+		Tags = InHandCraft,
+		category = Packing,
+		inputs
+		{
+			item 10 [PZCrossbows.ShortMetalBolt] flags[AllowFavorite;InheritFavorite;IsExclusive],
+		}
+		outputs
+		{
+			item 1 PZCrossbows.ShortMetalBoltBox,
+		}
+	}
+
+	craftRecipe PZC_RepairCrossbowWelding
+	{
+		timedAction = Welding_Surface,
+		Time = 180,
+		AllowBatchCraft = false,
+		Tags = AnySurfaceCraft;Welding,
+		category = Repair,
+		SkillRequired = MetalWelding:1,
+		needTobeLearn = false,
+		xpAward = MetalWelding:15;Maintenance:10,
+		OnCreate = RecipeCodeOnCreate.genericEvenBetterFixing,
+		Tooltip = Tooltip_Recipe_CanFailAndDamage,
+		inputs
+		{
+			item 1 [PZCrossbows.Crossbow;PZCrossbows.ImprovedCrossBow;PZCrossbows.CompoundCrossBow;PZCrossbows.HandCrossBow] mode:keep flags[Prop2;IsDamaged],
+			item 1 [Base.BlowTorch] flags[Prop1],
+			item 1 tags[base:weldingmask] mode:keep,
+			item 1 [Base.ScrapMetal;Base.SmallSheetMetal;Base.Wire;Base.IronBarQuarter;Base.SteelBarQuarter],
+		}
+		outputs
+		{
+		}
+	}
+
+	craftRecipe PZC_RepairCrossbowForge
+	{
+		timedAction = HammerMetalStanding,
+		Time = 200,
+		AllowBatchCraft = false,
+		Tags = PrimitiveForge,
+		category = Repair,
+		SkillRequired = Blacksmith:1,
+		needTobeLearn = false,
+		xpAward = Blacksmith:15;Maintenance:10,
+		OnCreate = RecipeCodeOnCreate.genericEvenBetterFixing,
+		Tooltip = Tooltip_Recipe_CanFailAndDamage,
+		inputs
+		{
+			item 1 [PZCrossbows.Crossbow;PZCrossbows.ImprovedCrossBow;PZCrossbows.CompoundCrossBow;PZCrossbows.HandCrossBow] mode:keep flags[Prop2;IsDamaged],
+			item 1 tags[base:charcoal],
+			item 1 [Base.ScrapMetal;Base.SmallSheetMetal;Base.IronChunk;Base.SteelChunk;Base.IronBarQuarter;Base.SteelBarQuarter],
+			item 1 tags[base:hammer;base:clubhammer;base:smithinghammer;base:ballpeenhammer] mode:keep flags[Prop1;MayDegradeLight],
+			item 1 tags[base:crudetongs;base:metalworkingpliers;base:tongs] mode:keep flags[MayDegradeLight],
+		}
+		outputs
+		{
 		}
 	}
 

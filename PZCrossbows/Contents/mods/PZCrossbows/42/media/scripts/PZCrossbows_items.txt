@@ -112,6 +112,95 @@ module PZCrossbows
 		WorldStaticModel = ChippedStone,
 	}
 
+	item MetalBoltHead
+	{
+		DisplayName = Metal Bolt Head,
+		DisplayCategory = Material,
+		ItemType = base:normal,
+		Weight = 0.1,
+		Icon = MetalBoltHead,
+		metalvalue = 5,
+		StaticModel = IronBarStockPiece,
+		WorldStaticModel = IronBarStockPiece,
+		Tags = base:hasmetal;base:smeltableironsmall,
+	}
+
+	item MetalBolt
+	{
+		Weight = 0.1,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = MetalBolt,
+		DisplayName = Metal Bolt,
+		metalvalue = 5,
+		WorldStaticModel = WoodBolt,
+		Tags = base:hasmetal,
+	}
+
+	item BrokenMetalBolt
+	{
+		Weight = 0.08,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = BrokenMetalBolt,
+		DisplayName = Metal Bolt (Broken),
+		metalvalue = 5,
+		WorldStaticModel = WoodBoltBroken,
+		DoubleClickRecipe = PZC_SalvageMetalBoltHead,
+		Tags = base:hasmetal,
+	}
+
+	item MetalBoltBox
+	{
+		Weight = 0.85,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = MetalBoltBox,
+		DisplayName = Box of Metal Bolts,
+		metalvalue = 50,
+		WorldStaticModel = WoodBoltBox,
+		DoubleClickRecipe = PZC_OpenMetalBoltBox,
+		Tags = base:hasmetal,
+	}
+
+	item ShortMetalBolt
+	{
+		Weight = 0.06,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = ShortMetalBolt,
+		DisplayName = Short Metal Bolt,
+		metalvalue = 5,
+		WorldStaticModel = ShortWoodBolt,
+		Tags = base:hasmetal,
+	}
+
+	item BrokenShortMetalBolt
+	{
+		Weight = 0.05,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = ShortBrokenMetalBolt,
+		DisplayName = Short Metal Bolt (Broken),
+		metalvalue = 5,
+		WorldStaticModel = WoodBoltBroken,
+		DoubleClickRecipe = PZC_SalvageMetalBoltHead,
+		Tags = base:hasmetal,
+	}
+
+	item ShortMetalBoltBox
+	{
+		Weight = 0.5,
+		ItemType = base:normal,
+		DisplayCategory = Ammo,
+		Icon = ShortMetalBoltBox,
+		DisplayName = Box of Short Metal Bolts,
+		metalvalue = 50,
+		WorldStaticModel = ShortWoodBoltBox,
+		DoubleClickRecipe = PZC_OpenShortMetalBoltBox,
+		Tags = base:hasmetal,
+	}
+
 	item BoltQuiver
 	{
 		DisplayName = Bolt Quiver,

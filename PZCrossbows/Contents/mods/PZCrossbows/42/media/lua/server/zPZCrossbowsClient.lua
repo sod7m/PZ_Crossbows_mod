@@ -1,3 +1,5 @@
+require "TimedActions/zPZCrossbowsReloadSpeed"
+
 local function PZCrossbowsSide()
 	if isServer() then return "SERVER" end
 	if isClient() then return "CLIENT" end
@@ -70,6 +72,8 @@ end
 local PZCrossbowsBoltPairs = {
 	{ intact = "PZCrossbows.WoodBolt", broken = "PZCrossbows.BrokenBolt" },
 	{ intact = "PZCrossbows.ShortWoodBolt", broken = "PZCrossbows.BrokenShortBolt" },
+	{ intact = "PZCrossbows.MetalBolt", broken = "PZCrossbows.BrokenMetalBolt" },
+	{ intact = "PZCrossbows.ShortMetalBolt", broken = "PZCrossbows.BrokenShortMetalBolt" },
 }
 
 local function PZCrossbowsCleanupCorpseBoltDuplicates(zombie)
@@ -121,14 +125,21 @@ local function PZCrossbowsOnZombieDead(zombie)
 	if not modData then return end
 	local vars = SandboxVars and SandboxVars.PZCrossbows
 	if not vars then return end
-	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumW", "WSpawned", "PZCrossbows.WoodBolt", "PZCrossbows.BrokenBolt", vars.BoltWBaseBreakChance, vars.BoltWBreakChanceScaling)
-	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumSW", "SWSpawned", "PZCrossbows.ShortWoodBolt", "PZCrossbows.BrokenShortBolt", vars.BoltSWBaseBreakChance, vars.BoltSWBreakChanceScaling)
+	local wBase = tonumber(vars.BoltWBaseBreakChance) or 40
+	local swBase = tonumber(vars.BoltSWBaseBreakChance) or 50
+	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumW", "WSpawned", "PZCrossbows.WoodBolt", "PZCrossbows.BrokenBolt", wBase, vars.BoltWBreakChanceScaling)
+	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumSW", "SWSpawned", "PZCrossbows.ShortWoodBolt", "PZCrossbows.BrokenShortBolt", swBase, vars.BoltSWBreakChanceScaling)
+	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumM", "MSpawned", "PZCrossbows.MetalBolt", "PZCrossbows.BrokenMetalBolt", wBase + 25, vars.BoltWBreakChanceScaling)
+	PZCrossbowsRecoverBoltBatch(zombie, modData, "BoltNumSM", "SMSpawned", "PZCrossbows.ShortMetalBolt", "PZCrossbows.BrokenShortMetalBolt", swBase + 25, vars.BoltSWBreakChanceScaling)
 	PZCrossbowsCleanupCorpseBoltDuplicates(zombie)
 end
 
 local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
 	if isClient() then return end
 	if not CheckIsCrossbow(weapon) then return end
+	if PZCrossbowsAmmo and PZCrossbowsAmmo.ensureSynced then
+		PZCrossbowsAmmo.ensureSynced(weapon)
+	end
 	local ammoTypeObj = weapon:getAmmoType()
 	if not ammoTypeObj then return end
 	local ammoType = ammoTypeObj:toString()
@@ -143,6 +154,16 @@ local function PZCrossbowsHitCrossbow(attacker, target, weapon, damage)
 		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
 		modData.SWSpawned = false
 		PZCrossbowsDebugPrint("hit with short wood bolt, lodged=", modData.BoltNumSW, " maintenance=", modData.MaintenanceLevel)
+	elseif ammoType == "pzcrossbows:metal_bolt" then
+		modData.BoltNumM = (tonumber(modData.BoltNumM) or 0) + 1
+		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
+		modData.MSpawned = false
+		PZCrossbowsDebugPrint("hit with metal bolt, lodged=", modData.BoltNumM, " maintenance=", modData.MaintenanceLevel)
+	elseif ammoType == "pzcrossbows:short_metal_bolt" then
+		modData.BoltNumSM = (tonumber(modData.BoltNumSM) or 0) + 1
+		modData.MaintenanceLevel = attacker:getPerkLevel(Perks.Maintenance)
+		modData.SMSpawned = false
+		PZCrossbowsDebugPrint("hit with short metal bolt, lodged=", modData.BoltNumSM, " maintenance=", modData.MaintenanceLevel)
 	end
 end
 
@@ -185,6 +206,9 @@ local function PZCrossbowsOnPlayerUpdate(player)
 	if weapon == nil then return end
 	local models = PZCrossbowsModels[weapon:getType()]
 	if models == nil then return end
+	if PZCrossbowsAmmo and PZCrossbowsAmmo.ensureSynced then
+		PZCrossbowsAmmo.ensureSynced(weapon)
+	end
 	local wanted = models.empty
 	if weapon:getCurrentAmmoCount() > 0 then
 		wanted = models.drawn

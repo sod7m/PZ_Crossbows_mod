@@ -12,5 +12,14 @@
   "PZCrossbows.ShortWoodBolt": "Короткий дерев'яний болт",
   "PZCrossbows.ShortWoodBoltBox": "Коробка коротких дерев'яних болтів",
   "PZCrossbows.StoneBoltHead": "Кам'яний наконечник болта",
+  "PZCrossbows.MetalBoltHead": "Металевий наконечник болта",
+  "PZCrossbows.MetalBolt": "Металевий болт",
+  "PZCrossbows.BrokenMetalBolt": "Металевий болт (зламаний)",
+  "PZCrossbows.MetalBoltBox": "Коробка металевих болтів",
+  "PZCrossbows.ShortMetalBolt": "Короткий металевий болт",
+  "PZCrossbows.BrokenShortMetalBolt": "Короткий металевий болт (зламаний)",
+  "PZCrossbows.ShortMetalBoltBox": "Коробка коротких металевих болтів",
+  "PZCrossbows.PZC_MetalBoltTracerRef": "Металевий болт (тех.)",
+  "PZCrossbows.PZC_ShortMetalBoltTracerRef": "Короткий металевий болт (тех.)",
   "PZCrossbows.BoltQuiver": "Сагайдак для болтів"
 }

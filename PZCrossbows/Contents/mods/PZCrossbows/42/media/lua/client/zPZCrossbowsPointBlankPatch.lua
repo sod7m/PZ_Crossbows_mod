@@ -17,6 +17,10 @@ HF_PointBlank.isCrossbow = function(weapon)
 	ammoType = ammoType:toString()
 	return ammoType == "PZCrossbows.WoodBolt" or
 		ammoType == "PZCrossbows.ShortWoodBolt" or
+		ammoType == "PZCrossbows.MetalBolt" or
+		ammoType == "PZCrossbows.ShortMetalBolt" or
 		ammoType == "pzcrossbows:wood_bolt" or
-		ammoType == "pzcrossbows:short_wood_bolt"
+		ammoType == "pzcrossbows:short_wood_bolt" or
+		ammoType == "pzcrossbows:metal_bolt" or
+		ammoType == "pzcrossbows:short_metal_bolt"
 end

@@ -12,5 +12,14 @@
   "PZCrossbows.ShortWoodBolt": "Short Wood Bolt",
   "PZCrossbows.ShortWoodBoltBox": "Box of Short Wood Bolts",
   "PZCrossbows.StoneBoltHead": "Stone Bolt Head",
+  "PZCrossbows.MetalBoltHead": "Metal Bolt Head",
+  "PZCrossbows.MetalBolt": "Metal Bolt",
+  "PZCrossbows.BrokenMetalBolt": "Metal Bolt (Broken)",
+  "PZCrossbows.MetalBoltBox": "Box of Metal Bolts",
+  "PZCrossbows.ShortMetalBolt": "Short Metal Bolt",
+  "PZCrossbows.BrokenShortMetalBolt": "Short Metal Bolt (Broken)",
+  "PZCrossbows.ShortMetalBoltBox": "Box of Short Metal Bolts",
+  "PZCrossbows.PZC_MetalBoltTracerRef": "Metal Bolt Tracer Reference",
+  "PZCrossbows.PZC_ShortMetalBoltTracerRef": "Short Metal Bolt Tracer Reference",
   "PZCrossbows.BoltQuiver": "Bolt Quiver"
 }
